@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { FlatList, Image, Alert, Platform, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView} from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
+
 
 
 
@@ -41,49 +42,50 @@ const styles = StyleSheet.create({
 
 
 class Display extends Component {
+  state = {
+    category: ['Tacos',
+      'Burritos',
+      'Soda',
+      'Ice Cream',
+      'Dip']
+  }
   render() {
+    // const { navigate } = this.props.navigation;
     return (
-      <View style={styles.display}>
-        <Text style={styles.Category}>{this.props.category}</Text>
-        <View style={styles.box}>
-          <Text style={styles.topRated}>Taco John 👑</Text>
-        <Text style={styles.ratings}>Flavor: 2</Text>
-        <Text style={styles.ratings}>Cost: 3</Text>
-        <Text style={styles.ratings}>Quality: 5</Text>
-        </View>
+      <View>
+        {this.state.category.map(category => <View style={styles.display}> 
+          <Text
+          // onPress={() => navigate('CategoryScreen')} 
+          style={styles.Category}>{category}</Text>
+            <Text style={styles.topRated}>Taco John 👑</Text>
+            <Text style={styles.ratings}>Flavor: 2</Text>
+            <Text style={styles.ratings}>Cost: 3</Text>
+            <Text style={styles.ratings}>Quality: 5</Text>
         <TouchableOpacity>
-          <Button title="Add New Item"></Button>
+          <Button onPress={()=>{console.log('you pressed me')}}title="Add New Item"></Button>
           </TouchableOpacity>
+      </View>)}
       </View>
     );
   }
 }
 
 
-const HomeScreen = (props) =>{
-  return (<ScrollView style={styles.home}>
-   <Display category='Tacos'/>
-   <br></br>
-    <Display category='Tamales' />
-    <br></br>
-    <Display category='Burritos' />
-    <br></br>
-    <Display category='Ice Cream' />
-    <br></br>
-    <Display category='Soda' />
-    <br></br>
-    <Display />
-    <br></br>
-    <Display />
-    <br></br>
-    <Display />
-    <br></br>
-    <Display />
-    <br></br>
-    <Display />
+class HomeScreen extends Component {
+  render(){
+    
+    
+
+  return (
+  <ScrollView style={styles.home}>
+<Display />
+
+
    
 
-  </ScrollView>)
+  </ScrollView>
+  )
+}
 }
 
 export default HomeScreen;

@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     color: 'blue',
     fontWeight: 'bold',
     fontSize: 30,
+    textAlign:'center'
   },
   topRated: {
     color: 'red',
@@ -20,7 +21,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
    home: {
-    backgroundColor: 'burlywood'
+    backgroundColor: 'burlywood',
+    height:650,
   },
   display: {
     backgroundColor: 'antiquewhite'

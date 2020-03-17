@@ -46,7 +46,7 @@ class Display extends Component {
       <View style={styles.display}>
         <Text style={styles.Category}>{this.props.category}</Text>
         <View style={styles.box}>
-        <Text style={styles.topRated}>Taco John</Text>
+          <Text style={styles.topRated}>Taco John 👑</Text>
         <Text style={styles.ratings}>Flavor: 2</Text>
         <Text style={styles.ratings}>Cost: 3</Text>
         <Text style={styles.ratings}>Quality: 5</Text>

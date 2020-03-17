@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         backgroundColor:'black',
     },
     text:{
-        fontSize: 64,
+        fontSize: 48,
         color: 'white',
     textAlign:'center'}
 });
@@ -19,7 +19,10 @@ const styles = StyleSheet.create({
 
 
 const Header = (props) => {
-    return (<View style={styles.Header}><Text style={styles.text}>CooLRankS</Text></View>
+    return (<View style={styles.Header}>
+        <Text style={styles.text}>CooL 👑 RankS</Text>
+        
+    </View>
     )
 }
 

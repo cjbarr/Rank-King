@@ -10,22 +10,32 @@ const styles = StyleSheet.create({
     color: 'blue',
     fontWeight: 'bold',
     fontSize: 30,
-    textAlign:'center'
+    textAlign:'center',
+    backgroundColor:'darkgrey',
   },
   topRated: {
     color: 'red',
-    fontSize: 20,
+    fontSize: 18,
+    fontWeight: 'bold'
   },
   ratings: {
     color: 'green',
     fontSize: 12,
+    fontStyle: 'italic'
   },
    home: {
-    backgroundColor: 'burlywood',
+    backgroundColor: 'coral',
     height:650,
   },
+  box: {
+   
+  },
   display: {
-    backgroundColor: 'antiquewhite'
+    backgroundColor: 'antiquewhite',
+    marginTop:2,
+    marginBottom:2,
+    marginRight:10,
+    marginLeft:10
   }
 });
 
@@ -35,10 +45,15 @@ class Display extends Component {
     return (
       <View style={styles.display}>
         <Text style={styles.Category}>{this.props.category}</Text>
+        <View style={styles.box}>
         <Text style={styles.topRated}>Taco John</Text>
         <Text style={styles.ratings}>Flavor: 2</Text>
         <Text style={styles.ratings}>Cost: 3</Text>
         <Text style={styles.ratings}>Quality: 5</Text>
+        </View>
+        <TouchableOpacity>
+          <Button title="Add New Item"></Button>
+          </TouchableOpacity>
       </View>
     );
   }

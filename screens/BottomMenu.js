@@ -30,8 +30,12 @@ const styles = StyleSheet.create({
 const Header = (props) => {
     return (<View style={styles.menu}>
         <View style={styles.box}>
+            <TouchableOpacity>
         <Text style={styles.add}>Add</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
         <Text style={styles.back}>Back</Text>
+   </TouchableOpacity>
    </View> 
    </View>
     )

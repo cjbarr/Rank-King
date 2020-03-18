@@ -43,11 +43,28 @@ const styles = StyleSheet.create({
         fontSize:16,
         textAlign:'center',
     },
+    criteriaButton: {
+        width:'25%',
+        marginLeft:'65%',
+    }
 
 
 });
 
-
+class newCriteria extends Component {
+   
+    render() {
+     
+        return (
+            <View>
+                <br></br>
+                <TextInput placeholder={' New Criteria'}
+                    style={styles.criteriaInput}
+                />
+            </View>
+        );
+    }
+}
 
 
 
@@ -79,6 +96,11 @@ class NewCategory extends Component {
                     <TextInput placeholder={' New Criteria'}
                         style={styles.criteriaInput}
                     />
+                    <br></br>
+                    <View style={styles.criteriaButton}>
+                        <Button onPress={() => console.log('Insert new Criteria')} title={'Add Criteria'}></Button>
+                        </View>
+                    
                 </View>
 
 

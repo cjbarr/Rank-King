@@ -8,6 +8,7 @@ import * as WebBrowser from 'expo-web-browser';
 const styles = StyleSheet.create({
     Header: {
         backgroundColor:'black',
+        height:'10%',
     },
     text:{
         fontSize: 48,

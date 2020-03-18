@@ -137,6 +137,16 @@ class NewItem extends Component {
                     />
 
                     <br></br>
+                    <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                    <br></br>
+                    <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                        <Button onPress={() => console.log('adding new item')} title={'Add new item'}></Button>
 
 
                  </View>

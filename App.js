@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, Platform, StatusBar, StyleSheet, View } from 'react-native';
-import { SplashScreen } from 'expo';
+// import { SplashScreen } from 'expo';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
@@ -11,6 +11,7 @@ import BottomMenu from './screens/BottomMenu';
 import CategoryScreen from './screens/CategoryScreen';
 import NewCategory from './screens/NewCategory';
 import NewItem from './screens/NewItem';
+import SplashScreen from './screens/SplashScreen';
 
 
 
@@ -22,9 +23,9 @@ return(
   <NavigationContainer>
   <View>
   
-
+<SplashScreen />
   <HomeScreen />
-  
+
   <CategoryScreen />
   <NewCategory />
   <NewItem />

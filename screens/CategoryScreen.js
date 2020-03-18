@@ -93,6 +93,15 @@ class Display extends Component {
                         <Button onPress={() => { console.log('you pressed edit') }} title="Edit Item"></Button>
                     </TouchableOpacity>
                 </View>
+                <View style={styles.display}>
+                    <Text style={styles.topRated}>Taco Tunnel</Text>
+                    <Text style={styles.ratings}>Flavor: 2</Text>
+                    <Text style={styles.ratings}>Cost: 3</Text>
+                    <Text style={styles.ratings}>Quality: 5</Text>
+                    <TouchableOpacity>
+                        <Button onPress={() => { console.log('you pressed edit') }} title="Edit Item"></Button>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }

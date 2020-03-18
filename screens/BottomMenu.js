@@ -8,7 +8,7 @@ import * as WebBrowser from 'expo-web-browser';
 const styles = StyleSheet.create({
     menu: {
         backgroundColor: 'black',
-        height:90,
+        height:'10%',
     },
     add: {
         fontSize: 36,

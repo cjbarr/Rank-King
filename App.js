@@ -10,6 +10,7 @@ import Header from './screens/Header';
 import BottomMenu from './screens/BottomMenu';
 import CategoryScreen from './screens/CategoryScreen';
 import NewCategory from './screens/NewCategory';
+import NewItem from './screens/NewItem';
 
 
 
@@ -22,9 +23,10 @@ return(
   <View>
   <Header />
 
-  {/* <HomeScreen /> */}
+  <HomeScreen />
   <CategoryScreen />
-  {/* <NewCategory /> */}
+  <NewCategory />
+  <NewItem />
  
   {/* <Stack.Navigator>
   <Stack.Screen name="Home" component={HomeScreen} />

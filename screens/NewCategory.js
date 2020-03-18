@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'coral',
         height: 650,
     },
-    title: { backgroundColor:'lightgrey',
+    title: { backgroundColor:'darkgrey',
             fontSize:36,
             textAlign:'center',
     },

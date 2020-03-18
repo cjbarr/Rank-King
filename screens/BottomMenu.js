@@ -31,11 +31,11 @@ const Header = (props) => {
     return (<View style={styles.menu}>
         <View style={styles.box}>
             <TouchableOpacity>
-        <Text style={styles.add}>Add</Text>
+        <Text style={styles.add}>Home</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        {/* <TouchableOpacity>
         <Text style={styles.back}>Back</Text>
-   </TouchableOpacity>
+   </TouchableOpacity> */}
    </View> 
    </View>
     )

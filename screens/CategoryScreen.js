@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import { FlatList, Image, Alert, Platform, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
+import Header from './Header';
+import BottomMenu from './BottomMenu';
+
 
 
 
@@ -26,9 +29,9 @@ const styles = StyleSheet.create({
     },
     home: {
         backgroundColor: 'coral',
-        height: 650,
     },
     box: {
+        height: 650,
 
     },
     display: {
@@ -101,7 +104,8 @@ class CategoryScreen extends Component {
 
 
 
-        return (
+        return (<View style={styles.box}>
+            <Header />
             <ScrollView style={styles.home}>
                 <Display />
 
@@ -109,6 +113,8 @@ class CategoryScreen extends Component {
 
 
             </ScrollView>
+            <BottomMenu />
+            </View>
         )
     }
 }

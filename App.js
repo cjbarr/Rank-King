@@ -21,9 +21,10 @@ export default function App(props) {
 return(
   <NavigationContainer>
   <View>
-  <Header />
+  
 
   <HomeScreen />
+  
   <CategoryScreen />
   <NewCategory />
   <NewItem />
@@ -33,7 +34,7 @@ return(
   <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
   </Stack.Navigator>
   */}
-  <BottomMenu />
+  
   </View>
   </NavigationContainer>
 )

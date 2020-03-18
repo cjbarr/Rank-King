@@ -33,8 +33,8 @@ const styles = StyleSheet.create({
   },
   display: {
     backgroundColor: 'antiquewhite',
-    marginTop:2,
-    marginBottom:2,
+    marginTop:10,
+    marginBottom:10,
     marginRight:10,
     marginLeft:10
   }
@@ -62,7 +62,7 @@ class Display extends Component {
             <Text style={styles.ratings}>Cost: 3</Text>
             <Text style={styles.ratings}>Quality: 5</Text>
         <TouchableOpacity>
-          <Button onPress={()=>{console.log('you pressed me')}}title="Add New Item"></Button>
+          <Button onPress={()=>{console.log('you pressed me', {category})}}title="Add New Item"></Button>
           </TouchableOpacity>
       </View>)}
       </View>

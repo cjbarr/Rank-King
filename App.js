@@ -9,6 +9,7 @@ import HomeScreen from '../first-native/screens/HomeScreen';
 import Header from './screens/Header';
 import BottomMenu from './screens/BottomMenu';
 import CategoryScreen from './screens/CategoryScreen';
+import NewCategory from './screens/NewCategory';
 
 
 
@@ -20,13 +21,16 @@ return(
   <NavigationContainer>
   <View>
   <Header />
-  <HomeScreen />
+
+  {/* <HomeScreen />
+  <CategoryScreen /> */}
+  <NewCategory />
  
-  <Stack.Navigator>
+  {/* <Stack.Navigator>
   <Stack.Screen name="Home" component={HomeScreen} />
   <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
   </Stack.Navigator>
- 
+  */}
   <BottomMenu />
   </View>
   </NavigationContainer>

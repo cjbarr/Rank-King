@@ -9,7 +9,9 @@ import * as WebBrowser from 'expo-web-browser';
 const styles = StyleSheet.create({
     Header: {
         backgroundColor:'black',
-    }
+    },
+    display: {fontSize:64,
+    color:'white',}
 });
 
 
@@ -17,7 +19,7 @@ const styles = StyleSheet.create({
 
 const CategoryScreen = (props) => {
     return (<View style={styles.Header}>
-        <Text >Category is!</Text>
+        <Text style={styles.display}> Category is!</Text>
         
     </View>
     )

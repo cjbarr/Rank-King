@@ -22,9 +22,9 @@ return(
   <View>
   <Header />
 
-  {/* <HomeScreen />
-  <CategoryScreen /> */}
-  <NewCategory />
+  {/* <HomeScreen /> */}
+  <CategoryScreen />
+  {/* <NewCategory /> */}
  
   {/* <Stack.Navigator>
   <Stack.Screen name="Home" component={HomeScreen} />

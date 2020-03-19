@@ -13,9 +13,10 @@ const styles = StyleSheet.create({
     Category: {
         color: 'blue',
         fontWeight: 'bold',
-        fontSize: 30,
+        fontSize: 34,
         textAlign: 'center',
         backgroundColor: 'darkgrey',
+        height:'8%'
     },
     topRated: {
         color: 'red',
@@ -31,7 +32,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'coral',
     },
     box: {
-        height: 650,
+        height: '100%',
+        backgroundColor: 'coral',
 
     },
     display: {
@@ -53,9 +55,9 @@ class Display extends Component {
             'Dip']
     }
     render() {
+        
         return (
             <View>
-                <Text style={styles.Category}>Tacos</Text>
                
                      <View style={styles.display}>
                         <Text style={styles.topRated}>Taco John 👑</Text>
@@ -102,6 +104,24 @@ class Display extends Component {
                         <Button onPress={() => { console.log('you pressed edit') }} title="Edit Item"></Button>
                     </TouchableOpacity>
                 </View>
+                <View style={styles.display}>
+                    <Text style={styles.topRated}>Taco Tornado</Text>
+                    <Text style={styles.ratings}>Flavor: 2</Text>
+                    <Text style={styles.ratings}>Cost: 3</Text>
+                    <Text style={styles.ratings}>Quality: 5</Text>
+                    <TouchableOpacity>
+                        <Button onPress={() => { console.log('you pressed edit') }} title="Edit Item"></Button>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.display}>
+                    <Text style={styles.topRated}>Tacos?</Text>
+                    <Text style={styles.ratings}>Flavor: 2</Text>
+                    <Text style={styles.ratings}>Cost: 3</Text>
+                    <Text style={styles.ratings}>Quality: 5</Text>
+                    <TouchableOpacity>
+                        <Button onPress={() => { console.log('you pressed edit') }} title="Edit Item"></Button>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }
@@ -115,6 +135,7 @@ class CategoryScreen extends Component {
 
         return (<View style={styles.box}>
             <Header />
+            <Text style={styles.Category}>{this.props.route.params.category}</Text>
             <ScrollView style={styles.home}>
                 <Display />
 

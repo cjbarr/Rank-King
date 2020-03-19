@@ -31,6 +31,7 @@ return(
     >
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="NewItem" component={NewItem} />
+      <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
     
    
  

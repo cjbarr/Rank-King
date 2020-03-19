@@ -118,8 +118,6 @@ class NewItem extends Component {
 
 
     render() {
-        
-console.log(this.props.route.params.category);
 
 
         return (

@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   Category: {
     color: 'blue',
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 34,
     textAlign:'center',
     backgroundColor:'darkgrey',
   },
@@ -61,8 +61,7 @@ class Display extends Component {
     return (
       <View>
         {this.state.category.map(category => <View key={category} style={styles.display}> 
-          <Text
-          // onPress={() => navigate('CategoryScreen')} 
+          <Text onPress={() => { this.props.navigation.navigate('CategoryScreen',{category}) }} 
           style={styles.Category}>{category}</Text>
             <Text style={styles.topRated}>Taco John 👑</Text>
             <Text style={styles.ratings}>Flavor: 2</Text>

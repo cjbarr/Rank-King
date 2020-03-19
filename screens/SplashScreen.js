@@ -13,8 +13,13 @@ const styles = StyleSheet.create({
         
     },
     screen:{backgroundColor:'black',
-height:812,
-        textAlignVertical: 'center',}
+        height:812,
+        textAlignVertical: 'center',
+    },
+    myName:{color:'white',
+    fontSize:16,
+textAlign:'center',
+fontFamily:'tahoma'}
 });
 
 
@@ -36,13 +41,22 @@ const SplashScreen = (props) => {
             <br></br>
             <br></br>
             <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
             <Text style={styles.words}>CooL</Text>
             <Text style={styles.words}>👑</Text>
             <Text style={styles.words}>RankS</Text>
-           
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Text style={styles.myName}>Corey Barr</Text>
 
        
     </View>

@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
+import 'react-native-gesture-handler';
 import { FlatList, Image, Alert, Platform, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
 import { ScrollView} from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
 import Header from './Header';
 import BottomMenu from './BottomMenu';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import NewItem from './NewItem';
+
 
 
 
@@ -30,7 +35,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'coral',
   },
   box: {
-    height: 650,
+    height: '100%',
    
   },
   display: {
@@ -52,7 +57,7 @@ class Display extends Component {
       'Dip']
   }
   render() {
-    // const { navigate } = this.props.navigation;
+    
     return (
       <View>
         {this.state.category.map(category => <View style={styles.display}> 
@@ -64,7 +69,7 @@ class Display extends Component {
             <Text style={styles.ratings}>Cost: 3</Text>
             <Text style={styles.ratings}>Quality: 5</Text>
         <TouchableOpacity>
-          <Button onPress={()=>{console.log('you pressed me', {category})}}title="Add New Item"></Button>
+          <Button onPress={()=>{navigate('NewItem')}} title="Add New Item"></Button>
           </TouchableOpacity>
       </View>)}
       </View>
@@ -73,10 +78,7 @@ class Display extends Component {
 }
 
 
-class HomeScreen extends Component {
-  render(){
-    
-    
+function HomeScreen(){
 
   return (
     <View style={styles.box}>
@@ -92,7 +94,7 @@ class HomeScreen extends Component {
       </View>
   )
 }
-}
+
 
 export default HomeScreen;
  

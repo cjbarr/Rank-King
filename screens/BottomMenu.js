@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { FlatList, Image, Alert, Platform, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
+import { useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 
 
@@ -28,10 +30,11 @@ const styles = StyleSheet.create({
 
 
 const Header = (props) => {
+    const navigation = useNavigation();
     return (<View style={styles.menu}>
         <View style={styles.box}>
             <TouchableOpacity>
-        <Text style={styles.add}>Home</Text>
+                <Text onPress={() => { navigation.navigate('Home') }}style={styles.add}>Home</Text>
         </TouchableOpacity>
         {/* <TouchableOpacity>
         <Text style={styles.back}>Back</Text>

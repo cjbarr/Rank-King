@@ -1,4 +1,5 @@
 import * as React from 'react';
+import 'react-native-gesture-handler';
 import { Text, Platform, StatusBar, StyleSheet, View } from 'react-native';
 // import { SplashScreen } from 'expo';
 import * as Font from 'expo-font';
@@ -17,26 +18,23 @@ import SplashScreen from './screens/SplashScreen';
 
 const Stack = createStackNavigator();
 
+
 export default function App(props) {
+
   
 return(
   <NavigationContainer>
-  <View>
-  
-<SplashScreen />
-  <HomeScreen />
-
-  <CategoryScreen />
-  <NewCategory />
-  <NewItem />
  
-  {/* <Stack.Navigator>
-  <Stack.Screen name="Home" component={HomeScreen} />
-  <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
-  </Stack.Navigator>
-  */}
-  
-  </View>
+    <Stack.Navigator
+    initialRouteName="NewItem"
+    headerMode='none'
+    >
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="NewItem" component={NewItem} />
+    
+   
+ 
+    </Stack.Navigator>
   </NavigationContainer>
 )
 }

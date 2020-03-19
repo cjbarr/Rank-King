@@ -69,7 +69,7 @@ class Display extends Component {
             <Text style={styles.ratings}>Cost: 3</Text>
             <Text style={styles.ratings}>Quality: 5</Text>
         <TouchableOpacity>
-          <Button onPress={()=>{this.props.navigation.navigate('NewItem')}} title="Add New Item"></Button>
+          <Button onPress={()=>{this.props.navigation.navigate('NewItem',{category})}} title="Add New Item"></Button>
           </TouchableOpacity>
       </View>)}
       </View>

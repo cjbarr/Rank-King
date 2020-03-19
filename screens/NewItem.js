@@ -119,6 +119,7 @@ class NewItem extends Component {
 
     render() {
         
+console.log(this.props.route.params.category);
 
 
         return (
@@ -127,7 +128,7 @@ class NewItem extends Component {
            
             <View style={styles.home}>
                 <View style={styles.display}>
-                    <Text style={styles.title}>New Taco</Text>
+                        <Text style={styles.title}>{this.props.route.params.category}</Text>
                 <br></br>
 
 

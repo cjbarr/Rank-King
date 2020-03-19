@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   box: {
     height: '100%',
-   
+    backgroundColor: 'coral',
   },
   display: {
     backgroundColor: 'antiquewhite',
@@ -44,7 +44,15 @@ const styles = StyleSheet.create({
     marginBottom:10,
     marginRight:10,
     marginLeft:10
-  }
+  },
+  containerCat:{backgroundColor:'black',
+  height:'10%',
+  textAlign:'center',
+},
+addFont:{marginTop:5,
+color:'white',
+fontSize:24,
+},
 });
 
 
@@ -82,6 +90,7 @@ function HomeScreen(){
   return (
     <View style={styles.box}>
       <Header />
+
   <ScrollView style={styles.home}>
 <Display navigation={navigation} />
 
@@ -89,7 +98,10 @@ function HomeScreen(){
    
 
   </ScrollView>
-      <BottomMenu />
+    <View style={styles.containerCat}>
+        <Text style={styles.addFont} onPress={() => { navigation.navigate('NewCategory') }}>👑 Add Category</Text>
+        <Text style={styles.addFont} onPress={() => { navigation.navigate('Home') }}>👑 Add New Item</Text>
+      </View>
       </View>
   )
 }

@@ -10,6 +10,7 @@ import BottomMenu from './BottomMenu';
 const styles = StyleSheet.create({
     home: {
         backgroundColor: 'coral',
+        height:'80%',
     },
     title: { backgroundColor:'darkgrey',
             fontSize:36,
@@ -22,6 +23,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginRight: 10,
         marginLeft: 10,
+        height:'90%'
     },
     nameInput: { height: 40, 
         borderColor: 'black',

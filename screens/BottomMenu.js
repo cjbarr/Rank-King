@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 
 
 
-const Header = (props) => {
+const Footer = (props) => {
     const navigation = useNavigation();
     return (<View style={styles.menu}>
         <View style={styles.box}>
@@ -44,4 +44,4 @@ const Header = (props) => {
     )
 }
 
-export default Header;
+export default Footer;

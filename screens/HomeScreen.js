@@ -60,7 +60,7 @@ class Display extends Component {
     
     return (
       <View>
-        {this.state.category.map(category => <View style={styles.display}> 
+        {this.state.category.map(category => <View key={category} style={styles.display}> 
           <Text
           // onPress={() => navigate('CategoryScreen')} 
           style={styles.Category}>{category}</Text>
@@ -69,7 +69,7 @@ class Display extends Component {
             <Text style={styles.ratings}>Cost: 3</Text>
             <Text style={styles.ratings}>Quality: 5</Text>
         <TouchableOpacity>
-          <Button onPress={()=>{navigate('NewItem')}} title="Add New Item"></Button>
+          <Button onPress={()=>{this.props.navigation.navigate('NewItem')}} title="Add New Item"></Button>
           </TouchableOpacity>
       </View>)}
       </View>
@@ -79,12 +79,12 @@ class Display extends Component {
 
 
 function HomeScreen(){
-
+  const navigation = useNavigation();
   return (
     <View style={styles.box}>
       <Header />
   <ScrollView style={styles.home}>
-<Display />
+<Display navigation={navigation} />
 
 
    

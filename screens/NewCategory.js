@@ -10,7 +10,6 @@ import BottomMenu from './BottomMenu';
 const styles = StyleSheet.create({
     home: {
         backgroundColor: 'coral',
-        height: 650,
     },
     title: { backgroundColor:'darkgrey',
             fontSize:36,
@@ -23,7 +22,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginRight: 10,
         marginLeft: 10,
-        height: 600,
     },
     nameInput: { height: 40, 
         borderColor: 'black',
@@ -49,8 +47,9 @@ const styles = StyleSheet.create({
     criteriaButton: {
         width:'25%',
         marginLeft:'65%',
-    }
-
+    },
+    box:{height:'100%',
+},
 
 });
 
@@ -79,7 +78,7 @@ class NewCategory extends Component {
 
 
 
-        return (<View>
+        return (<View style={styles.box}>
             <Header />
             <View style={styles.home}>
                 <View style={styles.display}>

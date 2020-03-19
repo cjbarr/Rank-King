@@ -11,7 +11,7 @@ import BottomMenu from './BottomMenu';
 const styles = StyleSheet.create({
     home: {
         backgroundColor: 'coral',
-        height: 650,
+        height:'80%',
     },
     title: {
         backgroundColor: 'darkgrey',
@@ -22,13 +22,12 @@ const styles = StyleSheet.create({
     display: {
         backgroundColor: 'antiquewhite',
         marginTop: 10,
-        marginBottom: 10,
+        marginBottom: 0,
         marginRight: 10,
         marginLeft: 10,
-        height: 600,
+        height:'85%',
     },
     nameInput: {
-        height: 40,
         borderColor: 'black',
         backgroundColor: 'white',
         borderWidth: 2,
@@ -38,8 +37,11 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
     },
+    box: {
+        height: '100%',
+
+    },
     criteriaInput: {
-        height: 30,
         borderColor: 'black',
         backgroundColor: 'white',
         borderWidth: 2,
@@ -49,18 +51,20 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: 'center',
     },
-    criteriaButton: {
-        width: '25%',
-        marginLeft: '65%',
+    criteriaButton: { 
+        marginRight: 10,
+        marginLeft: 10,
+        
     },
     radioButtons:{
         flexDirection:'row',
         marginLeft:'auto',
         marginRight:'auto',
     },
-    criteriaName:{textAlign:'center',
+    criteriaName:{
+        textAlign:'center',
                     fontSize:20,
-            },
+    },
 
 
 });
@@ -118,7 +122,7 @@ class NewItem extends Component {
 
 
         return (
-            <View>
+            <View style={styles.box}>
                 <Header />
            
             <View style={styles.home}>
@@ -133,24 +137,12 @@ class NewItem extends Component {
             <br></br>
 
                     <TextInput placeholder={'Sub Category'}
-                        style={styles.criteriaInput}
-                    />
-
-                    <br></br>
-                    <br></br>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                    <br></br>
-                    <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                        <Button onPress={() => console.log('adding new item')} title={'Add new item'}></Button>
-
+                        style={styles.criteriaInput}/>
 
                  </View>
-
+                    <View style={styles.criteriaButton}>
+                    <Button onPress={() => console.log('adding new item')} title={'Add new item'}></Button>
+                </View>
                 </View>
 <BottomMenu />
 </View>

@@ -26,7 +26,7 @@ return(
   <NavigationContainer>
  
     <Stack.Navigator
-    initialRouteName="Home"
+    initialRouteName="NewItem"
     headerMode='none'
     >
       <Stack.Screen name="Home" component={HomeScreen} />

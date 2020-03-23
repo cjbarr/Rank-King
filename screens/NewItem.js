@@ -74,18 +74,22 @@ class Display extends Component {
     state = {
         checked: 'first',
     };
+
+
+    
   
     render() {
         const { checked } = this.state;
 return (
 <View>
 
-    <Text style={styles.criteriaName}> Criteria 1</Text>
-    <View style={styles.radioButtons}>
+    <Text style={styles.criteriaName}> {this.props.criteria}</Text>
+        <View style={styles.radioButtons} onChange={(event) => { this.props.handleChange(event, 'criteriaTwo') }}>
         <RadioButton
             value="first"
             status={checked === 'first' ? 'checked' : 'unchecked'}
-            onPress={() => { this.setState({ checked: 'first' }); }}
+            onPress={() => { this.setState({ checked: 'first' })
+        }}
         />
         <RadioButton
             value="second"
@@ -117,8 +121,23 @@ return (
 class NewItem extends Component {
 
 
+    state = {
+        categoryName: this.props.route.params.categoryName,
+        criteriaOne: this.props.route.params.criteriaOne,
+        criteriaTwo: this.props.route.params.criteriaTwo,
+        criteriaThree: this.props.route.params.criteriaThree,
+    }
+
+    handleChange = (event, typeOf) => {
+        this.setState({
+            ...this.state,
+            [typeOf]: event.target.value
+        })
+    }
+
     render() {
 
+        console.log(this.props)
 
         return (
             <View style={styles.box}>
@@ -126,13 +145,13 @@ class NewItem extends Component {
            
             <View style={styles.home}>
                 <View style={styles.display}>
-                        <Text style={styles.title}>{this.props.route.params.category}</Text>
+                        <Text style={styles.title}>{this.props.route.params.category}{this.props.route.params.categoryName}</Text>
                 <br></br>
 
 
-            <Display />
-            <Display />
-            <Display />
+                        <Display handleChange={this.handleChange} criteria={this.props.route.params.criteriaOne} />
+                        <Display handleChange={this.handleChange} criteria={this.props.route.params.criteriaTwo} />
+                        <Display handleChange={this.handleChange} criteria={this.props.route.params.criteriaThree} />
             <br></br>
 
                     <TextInput placeholder={'Sub Category'}

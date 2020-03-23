@@ -47,11 +47,11 @@ const styles = StyleSheet.create({
   },
   containerCat:{backgroundColor:'black',
   height:'10%',
-  textAlign:'center',
 },
 addFont:{marginTop:5,
 color:'white',
 fontSize:24,
+  textAlign: 'center',
 },
 });
 
@@ -71,7 +71,7 @@ class Display extends Component {
         {this.state.category.map(category => <View key={category} style={styles.display}> 
           <Text onPress={() => { this.props.navigation.navigate('CategoryScreen',{category}) }} 
           style={styles.Category}>{category}</Text>
-            <Text style={styles.topRated}>Taco John 👑</Text>
+            <Text style={styles.topRated}>{category} John 👑</Text>
             <Text style={styles.ratings}>Flavor: 2</Text>
             <Text style={styles.ratings}>Cost: 3</Text>
             <Text style={styles.ratings}>Quality: 5</Text>
@@ -100,7 +100,7 @@ function HomeScreen(){
   </ScrollView>
     <View style={styles.containerCat}>
         <Text style={styles.addFont} onPress={() => { navigation.navigate('NewCategory') }}>👑 Add Category</Text>
-        <Text style={styles.addFont} onPress={() => { navigation.navigate('Home') }}>👑 Add New Item</Text>
+        {/* <Text style={styles.addFont} onPress={() => { navigation.navigate('Home') }}>👑 Add New Item</Text> */}
       </View>
       </View>
   )

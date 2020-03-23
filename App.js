@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import 'react-native-gesture-handler';
 import { Text, Platform, StatusBar, StyleSheet, View } from 'react-native';
 // import { SplashScreen } from 'expo';
@@ -21,11 +21,13 @@ const {
     AnonymousCredential
 } = require('mongodb-stitch-browser-sdk');
 
-const client = Stitch.initializeDefaultAppClient('rank-stitch-hyyrw');
+Stitch.initializeDefaultAppClient('rank-stitch-hyyrw');
+const client = Stitch.defaultAppClient;
 
 const db = client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('rankdb');
 
 client.auth.loginWithCredential(new AnonymousCredential()).then(user =>
+  console.log(`logged in anonymously as user ${user.id}`),
   db.collection('ranks').updateOne({owner_id: client.auth.user.id}, {$set:{number:42}}, {upsert:true})
 ).then(() =>
   db.collection('ranks').find({owner_id: client.auth.user.id}, { limit: 100}).asArray()
@@ -47,21 +49,19 @@ client.auth.loginWithCredential(new AnonymousCredential()).then(user =>
 // }
 
 
-const screenProps ={
-addCatagory: {db}
-}
 
 
 
 const Stack = createStackNavigator();
 
 
-export default function App(props) {
+class App extends Component {
+  
 
   
-const screenProps ={
-addCatagory: {db}
-}
+render(){
+
+
   
 return(
   <NavigationContainer>
@@ -69,7 +69,6 @@ return(
     <Stack.Navigator
     initialRouteName="Home"
     headerMode='none'
-    screenProps={screenProps}
     >
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="NewItem" component={NewItem} />
@@ -82,3 +81,7 @@ return(
   </NavigationContainer>
 )
 }
+}
+
+
+export default App

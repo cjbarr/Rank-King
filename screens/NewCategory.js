@@ -5,14 +5,12 @@ import * as WebBrowser from 'expo-web-browser';
 import Header from './Header';
 import BottomMenu from './BottomMenu';
 import { useNavigation } from '@react-navigation/native';
-// const {
-//     Stitch,
-//     RemoteMongoClient,
-//     AnonymousCredential
-// } = require('mongodb-stitch-browser-sdk');
+const {
+    Stitch,
+    RemoteMongoClient,
+    AnonymousCredential
+} = require('mongodb-stitch-browser-sdk');
 
-// const client = Stitch.defaultAppClient;
-// const db = client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('rankdb');
 
 
 
@@ -68,23 +66,24 @@ const styles = StyleSheet.create({
 
 const AddButton = (props) => {
     const navigation = useNavigation();
+    const db = props.db
+    const client = props.client
 
-    // function addCatagory (){
-    //     db.collection('ranks').insertOne({
-    //         owner_id: client.auth.user.id,
-    //         catagoryTitle: props.state.categoryName,
-    //         criteriaOne: props.state.criteriaOne,
-    //         criteriaTwo: props.state.criteriaTwo,
-    //         criteriaThree: props.state.criteriaThree,
-    //     })
-    // }
+    function addCatagory (){
+        db.collection('ranks').insertOne({
+            owner_id: client.auth.user.id,
+            catagoryTitle: props.state.categoryName,
+            criteriaOne: props.state.criteriaOne,
+            criteriaTwo: props.state.criteriaTwo,
+            criteriaThree: props.state.criteriaThree,
+        })
+    }
     
-    console.log(props.screenProps, 'screen props');
-    
+
     return (
 
         <View style={styles.criteriaButton}>
-            <Button onPress={() => {navigation.navigate('NewItem', props.state); props.screenProps.addCatagory() }} title={'Add Category'}></Button>
+            <Button onPress={() => {navigation.navigate('NewItem', props.state); addCatagory()}} title={'Add Category'}></Button>
         </View>
         
     )
@@ -105,11 +104,16 @@ class NewCategory extends Component {
         })
     }
 
+    client = Stitch.defaultAppClient;
+    db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('rankdb');
+
 
     
     render() {
+        
+        console.log(this.client);
 
-        console.log('screenpropsbelow', this.props.screenProps);
+        
 
         return (<View style={styles.box}>
             <Header />
@@ -133,7 +137,7 @@ class NewCategory extends Component {
                         style={styles.criteriaInput}
                     />
                     <br></br>
-                    <AddButton addCatagory={this.props.addCatagory} state={this.state} />
+                    <AddButton client={this.client}  db={this.db} state={this.state} />
 
                     {/* <View style={styles.criteriaButton}>
                         <Button onPress={() => console.log(this.state)} title={'Add Category'}></Button>

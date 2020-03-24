@@ -106,6 +106,7 @@ class NewCategory extends Component {
 
     client = Stitch.defaultAppClient;
     db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('rankdb');
+    
 
 
     

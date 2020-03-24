@@ -60,43 +60,97 @@ fontSize:24,
 });
 
 
+
+
 class Display extends Component {
-  state = {
-    category: ['Tacos',
-      'Burritos',
-      'Soda',
-      'Ice Cream',
-      'Dip']
+ 
+  componentDidMount(){
+    console.log('catagory mount', this.props.catagory)
   }
+
+  
   render() {
-    
+
+  let arrayMap = this.props.catagory
+
+ console.log('catagory prop', arrayMap)
+
+let item = 'potato'
     return (
       <View>
-        {this.state.category.map(category => <View key={category} style={styles.display}> 
-          <Text onPress={() => { this.props.navigation.navigate('CategoryScreen',{category}) }} 
-          style={styles.Category}>{category}</Text>
-            <Text style={styles.topRated}>{category} John 👑</Text>
+        <Text>What</Text>
+
+        {arrayMap &&
+          arrayMap.map(item=>(<View key={item} style={styles.display}> 
+          <Text onPress={() => { this.props.navigation.navigate('CategoryScreen',{item}) }} 
+          style={styles.Category}>{item}</Text>
+            <Text style={styles.topRated}>{item} John 👑</Text>
             <Text style={styles.ratings}>Flavor: 2</Text>
             <Text style={styles.ratings}>Cost: 3</Text>
             <Text style={styles.ratings}>Quality: 5</Text>
         <TouchableOpacity>
-          <Button onPress={()=>{this.props.navigation.navigate('NewItem',{category})}} title="Add New Item"></Button>
+          <Button onPress={()=>{this.props.navigation.navigate('NewItem',{item})}} title="Add New Item"></Button>
           </TouchableOpacity>
-      </View>)}
       </View>
-    );
+          ))}
+      </View>
+    )
   }
 }
 
 
+
+
+
 function HomeScreen(){
   const navigation = useNavigation();
+
+let catArray=[];
+let count =0;
+  const client = Stitch.defaultAppClient;
+  const db = client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('rankdb');
+
+  function getCatagory() {
+    console.log('in get Catagory', client, db)
+    const catagories = db.collection('ranks');
+    catagories.find({ owner_id: client.auth.user.id }, { limit: 10 })
+      // catagories.collection.distinct({catagoryTitle: "Cheese" }, { limit: 10 })
+      .toArray()
+      .then(results =>
+        results.map(
+          // object => console.log(object.catagoryTitle)
+          object => catArray.push(object.catagoryTitle)
+          // object => <Display catagory={object.catagoryTitle} navigation={navigation} />
+        )
+      )
+      console.log(catArray, 'cat array');
+    count = 1
+    // setTimeout(() => { this.setState({...this.state,
+    //                                         thing:this.catArray}); }, 1000)
+  }
+
+
+    
   return (
     <View style={styles.box}>
       <Header />
 
   <ScrollView style={styles.home}>
-<Display navigation={navigation} />
+
+
+        {db &&
+
+          getCatagory()
+        
+        }
+
+        {/* {count ==1 &&
+        catArray.map(object => <View><Text>Hello</Text></View>)} */}
+  
+
+        <Display catagory={catArray} navigation={navigation} />
+        
+{/* <Display navigation={navigation} /> */}
 
 
    
@@ -108,7 +162,7 @@ function HomeScreen(){
       </View>
       </View>
   )
-}
+          }
 
 
 export default HomeScreen;

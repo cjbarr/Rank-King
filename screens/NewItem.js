@@ -85,9 +85,10 @@ function AddButton(props) {
 
    function addItem() {
        console.log('add props empty itemCat', props.state)
+       console.log(props.name)
         db.collection('ranks').insertOne({
             owner_id: client.auth.user.id,
-            itemCatagory:props.name,
+            itemCatagory: props.name,
             itemName: props.state.itemName,
             [props.state.criteriaOne]: props.state.one,
             [props.state.criteriaTwo]: props.state.two,
@@ -98,7 +99,7 @@ function AddButton(props) {
 
     return(
 <View style={styles.criteriaButton}>
-    <Button onPress={() => { navigation.navigate('Home'); addItem() }} title={'Add new item'}></Button>
+    <Button onPress={() => { navigation.navigate('Home'); addItem()}} title={'Add new item'}></Button>
 </View>
     )}
 
@@ -162,7 +163,7 @@ class NewItem extends Component {
     
 
     state = {
-        categoryName: this.props.route.params.catagoryTitle,
+        categoryName: this.props.route.params.categoryName || this.props.route.params.catagoryTitle,
         criteriaOne: this.props.route.params.criteriaOne,
         criteriaTwo: this.props.route.params.criteriaTwo,
         criteriaThree: this.props.route.params.criteriaThree,

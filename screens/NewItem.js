@@ -84,32 +84,37 @@ return (
 <View>
 
     <Text style={styles.criteriaName}> {this.props.criteria}</Text>
-        <View style={styles.radioButtons} onChange={(event) => { this.props.handleChange(event, this.props.number) }}>
+        <View style={styles.radioButtons} >
         <RadioButton
-            value="first"
-            status={checked === 'first' ? 'checked' : 'unchecked'}
-            onPress={() => { this.setState({ checked: 'first' })
+                onClick={(event) => { this.props.handleChange(this.props.number, 1) }}
+            value='1'
+            status={checked === 1 ? 'checked' : 'unchecked'}
+            onPress={() => { this.setState({ checked: 1 })
         }}
         />
         <RadioButton
-            value="second"
-            status={checked === 'second' ? 'checked' : 'unchecked'}
-            onPress={() => { this.setState({ checked: 'second' }); }}
+                onClick={(event) => { this.props.handleChange(this.props.number, 2) }}
+            value= '2'
+            status={checked === 2 ? 'checked' : 'unchecked'}
+            onPress={() => { this.setState({ checked: 2 }); }}
         />
         <RadioButton
-            value="third"
-            status={checked === 'third' ? 'checked' : 'unchecked'}
-            onPress={() => { this.setState({ checked: 'third' }); }}
+                onClick={(event) => { this.props.handleChange(this.props.number, 3) }}
+            value='3'
+            status={checked === 3 ? 'checked': 'unchecked'}
+            onPress={() => { this.setState({ checked: 3 }); }}
         />
         <RadioButton
-            value="fourth"
-            status={checked === 'fourth' ? 'checked' : 'unchecked'}
-            onPress={() => { this.setState({ checked: 'fourth' }); }}
+                onClick={(event) => { this.props.handleChange(this.props.number, 4) }}
+            value='4'
+            status={checked === 4 ? 'checked' : 'unchecked'}
+            onPress={() => { this.setState({ checked: 4 }); }}
         />
         <RadioButton
-            value="fifth"
-            status={checked === 'fifth' ? 'checked' : 'unchecked'}
-            onPress={() => { this.setState({ checked: 'fifth' }); }}
+                onClick={(event) => { this.props.handleChange(this.props.number, 5) }}
+            value='5'
+            status={checked === 5 ? 'checked' : 'unchecked'}
+            onPress={() => { this.setState({ checked: 5 }); }}
         />
     </View>
    
@@ -126,19 +131,15 @@ class NewItem extends Component {
         criteriaOne: this.props.route.params.criteriaOne,
         criteriaTwo: this.props.route.params.criteriaTwo,
         criteriaThree: this.props.route.params.criteriaThree,
-        // categoryName: 'apple',
-        // criteriaOne: 'peacg',
-        // criteriaTwo: 'cherry',
-        // criteriaThree: 'walut',
         one:'',
         two:'',
         three:'',
     }
 
-    handleChange = (event, typeOf) => {
+    handleChange = (typeOf, score) => {
         this.setState({
             ...this.state,
-            [typeOf]: event.target.value
+            [typeOf]: score
         })
         console.log(this.state)
     }

@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
   topRated: {
     color: 'red',
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 'bold'
   },
   ratings: {
@@ -74,12 +74,8 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
   console.log('in get Catagory', this.client, this.db)
   let catagories = this.db.collection('ranks');
   catagories.find({ owner_id: this.client.auth.user.id }, { limit: 10 })
-    // catagories.collection.distinct({catagoryTitle: "Cheese" }, { limit: 10 })
     .toArray()
     .then(results => this.setState({catState: results})
-        // object => console.log(object.catagoryTitle)
-        // object => catArray.push(object)
-        // object => <Display catagory={object.catagoryTitle} navigation={navigation} />
       ).then(
       console.log('state set'))
       }
@@ -98,20 +94,18 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
     return (
  
       <View>
-        <Text>What</Text>
-
         {this.state.catState &&
        this.state.catState.map(object => ( 
 
-       <View key={this.item} style={styles.display}> 
-          <Text onPress={() => { this.props.navigation.navigate('CategoryScreen',this.item) }} 
-          style={styles.Category}>{this.item.catagoryTitle}</Text>
-            <Text style={styles.topRated}>{this.item.catagoryTitle} John 👑</Text>
-            <Text style={styles.ratings}>Flavor: 2</Text>
-            <Text style={styles.ratings}>Cost: 3</Text>
-            <Text style={styles.ratings}>Quality: 5</Text>
+       <View key={object.catagoryTitle} style={styles.display}> 
+          <Text onPress={() => { this.props.navigation.navigate('CategoryScreen',object) }} 
+          style={styles.Category}>{object.catagoryTitle}</Text>
+          {/* <Text style ={styles.ratings}>Hold</Text> */}
+            <Text style={styles.topRated}>{object.criteriaOne}</Text>
+            <Text style={styles.topRated}>{object.criteriaTwo}</Text>
+            <Text style={styles.topRated}>{object.criteriaThree}</Text>
         <TouchableOpacity>
-          <Button onPress={()=>{this.props.navigation.navigate('NewItem',this.item)}} title="Add New Item"></Button>
+          <Button onPress={()=>{this.props.navigation.navigate('NewItem',object)}} title="Add New Item"></Button>
           </TouchableOpacity>
       </View>
           

@@ -119,13 +119,17 @@ return (
 }
 
 class NewItem extends Component {
-
+    
 
     state = {
-        categoryName: this.props.route.params.item.catagoryTitle,
-        criteriaOne: this.props.route.params.item.criteriaOne,
-        criteriaTwo: this.props.route.params.item.criteriaTwo,
-        criteriaThree: this.props.route.params.item.criteriaThree,
+        categoryName: this.props.route.params.catagoryTitle,
+        criteriaOne: this.props.route.params.criteriaOne,
+        criteriaTwo: this.props.route.params.criteriaTwo,
+        criteriaThree: this.props.route.params.criteriaThree,
+        // categoryName: 'apple',
+        // criteriaOne: 'peacg',
+        // criteriaTwo: 'cherry',
+        // criteriaThree: 'walut',
         one:'',
         two:'',
         three:'',

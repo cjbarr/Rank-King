@@ -173,25 +173,11 @@ class NewItem extends Component {
         itemName:'',
     }
 
-
-
-//     addItem() {
-//     this.db.collection('ranks').insertOne({
-//         owner_id: this.client.auth.user.id,
-//         itemCatagory: this.state.categoryName,
-//         itemName:this.state.itemName,
-//         [this.state.criteriaOne]: this.state.one,
-//         [this.state.criteriaTwo]: this.state.two,
-//         [this.state.criteriaThree]:this.state.three,
-//     })
-//     console.log('item added!', this.state)
-// }
     handleChange = (typeOf, score) => {
         this.setState({
             ...this.state,
             [typeOf]: score
         })
-        console.log(this.state)
     }
 
     handleText=(event)=>{

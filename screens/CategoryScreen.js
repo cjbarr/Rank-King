@@ -71,12 +71,18 @@ class Display extends Component {
                 console.log('state set'))
     }
 
+    deleteItem(itemToDelete) {
+        console.log(itemToDelete)
+        let catagories = this.db.collection('ranks');
+        catagories.deleteOne({"_id":itemToDelete  })
+           .then(
+                console.log('Deleted Item'))
+    }
+
     
     componentDidMount() {
         this.getItems();
     }
-
-critOne ='object.'+this.props.one
 
     render() {
         console.log('passed down props', this.props)
@@ -86,13 +92,14 @@ critOne ='object.'+this.props.one
                 {this.state.itemState &&
                     this.state.itemState.map(object => (
 
-                <View style={styles.display}>
+                <View key={object.itemName} style={styles.display}>
                     <Text style={styles.topRated}>{object.itemName}</Text>
                     <Text style={styles.ratings}>{this.props.one}: </Text>
                     <Text style={styles.ratings}>{this.props.two}:</Text>
                     <Text style={styles.ratings}>{this.props.three}: 5</Text>
                     <TouchableOpacity>
                         <Button onPress={() => { console.log('you pressed edit') }} title="Edit Item"></Button>
+                                <Button onPress={() => { this.deleteItem(object._id) }} title="Delete Item"></Button>
                     </TouchableOpacity>
                 </View>
                     ))}

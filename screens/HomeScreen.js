@@ -73,18 +73,22 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
   getCatagory() {
   console.log('in get Catagory', this.client, this.db)
   let catagories = this.db.collection('ranks');
-  catagories.find({ [this.client.auth.user.id]: 'catagoryList'  }, { limit: 10 })
+  catagories.find({ [this.client.auth.user.id]: 'catagoryList'  }, { limit: 50 })
     .toArray()
     .then(results => this.setState({catState: results})
       ).then(
       console.log('state set'))
       }
 
-  componentDidMount(){
+
+  componentDidMount() {
     this.getCatagory();
   }
 
-  item = "potato"
+
+  componentWillMount() {
+    this.setState({refresh:'true'})
+  }
 
   render() {
 
@@ -92,8 +96,9 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
  console.log('catagory prop', this.state)
 
     return (
- 
       <View>
+        {this.props &&
+        console.log('PROPS IN HOME DETAILS', this.props)}
         {this.state.catState &&
        this.state.catState.map(object => ( 
 
@@ -107,6 +112,7 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
         <TouchableOpacity>
           <Button onPress={()=>{this.props.navigation.navigate('NewItem',object)}} title="Add New Item"></Button>
           </TouchableOpacity>
+         
       </View>
           
        ))}
@@ -119,36 +125,8 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
 
 
 
-function HomeScreen(){
+function HomeScreen(props){
   const navigation = useNavigation();
-
-let catArray=[]
-  // {catagoryTitle:"Tacos", criteriaOne:"Flavor", criteriaTwo:"Price", criteriaThree:"Quality"}, "Burritos", "Enchiladas", "Posole", "Margarita"];
-let count =0;
-  // const client = Stitch.defaultAppClient;
-  // const db = client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('rankdb');
-
-  // function getCatagory() {
-  //   console.log('in get Catagory', client, db)
-  //   const catagories = db.collection('ranks');
-  //   catagories.find({ owner_id: client.auth.user.id }, { limit: 10 })
-  //     // catagories.collection.distinct({catagoryTitle: "Cheese" }, { limit: 10 })
-  //     .toArray()
-  //     .then(results =>
-  //       results.map(
-  //         // object => console.log(object.catagoryTitle)
-  //         object => catArray.push(object)
-  //         // object => <Display catagory={object.catagoryTitle} navigation={navigation} />
-  //       )
-  //     )
-     
-    
-    // setTimeout(() => { this.setState({...this.state,
-    //                                         thing:this.catArray}); }, 1000)
-  // }
-
-
-    
   return (
     <View style={styles.box}>
       <Header />
@@ -156,27 +134,13 @@ let count =0;
   <ScrollView style={styles.home}>
 
 
-        {/* {db &&
-
-          getCatagory()
+        <Display navigation={navigation} />
         
-        } */}
-
-        {/* {count ==1 &&
-        catArray.map(object => <View><Text>Hello</Text></View>)} */}
-  
-        
-        <Display catagory={catArray} navigation={navigation} />
-        
-{/* <Display navigation={navigation} /> */}
-
-
-   
 
   </ScrollView>
     <View style={styles.containerCat}>
         <Text style={styles.addFont} onPress={() => { navigation.navigate('NewCategory') }}>👑 Add Category</Text>
-        {/* <Text style={styles.addFont} onPress={() => { navigation.navigate('Home') }}>👑 Add New Item</Text> */}
+      
       </View>
       </View>
   )

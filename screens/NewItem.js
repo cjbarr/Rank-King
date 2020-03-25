@@ -5,6 +5,11 @@ import * as WebBrowser from 'expo-web-browser';
 import { RadioButton } from 'react-native-paper';
 import Header from './Header';
 import BottomMenu from './BottomMenu';
+const {
+    Stitch,
+    RemoteMongoClient,
+    AnonymousCredential
+} = require('mongodb-stitch-browser-sdk');
 
 
 
@@ -48,7 +53,7 @@ const styles = StyleSheet.create({
         width: '50%',
         marginLeft: 'auto',
         marginRight: 'auto',
-        fontSize: 16,
+        fontSize: 22,
         textAlign: 'center',
     },
     criteriaButton: { 
@@ -124,6 +129,9 @@ return (
 }
 
 class NewItem extends Component {
+
+    client = Stitch.defaultAppClient;
+    db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('rankdb');
     
 
     state = {
@@ -134,14 +142,33 @@ class NewItem extends Component {
         one:'',
         two:'',
         three:'',
+        itemName:'',
     }
 
+
+
+    addItem() {
+    this.db.collection('ranks').insertOne({
+        owner_id: this.client.auth.user.id,
+        itemCatagory: this.state.categoryName,
+        itemName:this.state.itemName,
+        [this.state.criteriaOne]: this.state.one,
+        [this.state.criteriaTwo]: this.state.two,
+        [this.state.criteriaThree]:this.state.three,
+    })
+}
     handleChange = (typeOf, score) => {
         this.setState({
             ...this.state,
             [typeOf]: score
         })
         console.log(this.state)
+    }
+
+    handleText=(event)=>{
+        this.setState({
+            itemName:event.target.value
+        })
     }
 
     render() {
@@ -156,19 +183,18 @@ class NewItem extends Component {
                 <View style={styles.display}>
                         <Text style={styles.title}>{this.state.categoryName}</Text>
                 <br></br>
-
-
+                        <TextInput placeholder={'Item Name'} onChange={this.handleText}
+                            style={styles.criteriaInput} />
+<br></br>
                         <Display handleChange={this.handleChange} criteria={this.state.criteriaOne} number={'one'} />
                         <Display handleChange={this.handleChange} criteria={this.state.criteriaTwo} number={'two'} />
                         <Display handleChange={this.handleChange} criteria={this.state.criteriaThree} number={'three'} />
             <br></br>
 
-                    <TextInput placeholder={'Sub Category'}
-                        style={styles.criteriaInput}/>
 
                  </View>
                     <View style={styles.criteriaButton}>
-                    <Button onPress={() => console.log(this.state)} title={'Add new item'}></Button>
+                    <Button onPress={() => this.addItem()} title={'Add new item'}></Button>
                 </View>
                 </View>
 <BottomMenu />

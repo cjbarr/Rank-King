@@ -5,6 +5,7 @@ import * as WebBrowser from 'expo-web-browser';
 import { RadioButton } from 'react-native-paper';
 import Header from './Header';
 import BottomMenu from './BottomMenu';
+import { useNavigation } from '@react-navigation/native';
 const {
     Stitch,
     RemoteMongoClient,
@@ -75,6 +76,31 @@ const styles = StyleSheet.create({
 });
 
 
+
+function AddButton(props) {
+   
+    const navigation = useNavigation();
+    const client = Stitch.defaultAppClient;
+    const db = client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('rankdb');
+
+   function addItem() {
+        db.collection('ranks').insertOne({
+            owner_id: client.auth.user.id,
+            itemCatagory:props.state.categoryName,
+            itemName: props.state.itemName,
+            [props.state.criteriaOne]: props.state.one,
+            [props.state.criteriaTwo]: props.state.two,
+            [props.state.criteriaThree]: props.state.three,
+        })
+        console.log('item added!')
+    }
+
+    return(
+<View style={styles.criteriaButton}>
+    <Button onPress={() => { navigation.navigate('Home'); addItem() }} title={'Add new item'}></Button>
+</View>
+    )}
+
 class Display extends Component {
     state = {
         checked: 'first',
@@ -130,8 +156,8 @@ return (
 
 class NewItem extends Component {
 
-    client = Stitch.defaultAppClient;
-    db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('rankdb');
+    // client = Stitch.defaultAppClient;
+    // db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('rankdb');
     
 
     state = {
@@ -147,16 +173,17 @@ class NewItem extends Component {
 
 
 
-    addItem() {
-    this.db.collection('ranks').insertOne({
-        owner_id: this.client.auth.user.id,
-        itemCatagory: this.state.categoryName,
-        itemName:this.state.itemName,
-        [this.state.criteriaOne]: this.state.one,
-        [this.state.criteriaTwo]: this.state.two,
-        [this.state.criteriaThree]:this.state.three,
-    })
-}
+//     addItem() {
+//     this.db.collection('ranks').insertOne({
+//         owner_id: this.client.auth.user.id,
+//         itemCatagory: this.state.categoryName,
+//         itemName:this.state.itemName,
+//         [this.state.criteriaOne]: this.state.one,
+//         [this.state.criteriaTwo]: this.state.two,
+//         [this.state.criteriaThree]:this.state.three,
+//     })
+//     console.log('item added!', this.state)
+// }
     handleChange = (typeOf, score) => {
         this.setState({
             ...this.state,
@@ -191,10 +218,8 @@ class NewItem extends Component {
                         <Display handleChange={this.handleChange} criteria={this.state.criteriaThree} number={'three'} />
             <br></br>
 
-
-                 </View>
-                    <View style={styles.criteriaButton}>
-                    <Button onPress={() => this.addItem()} title={'Add new item'}></Button>
+                    <AddButton state={this.state} />
+                   
                 </View>
                 </View>
 <BottomMenu />

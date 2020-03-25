@@ -84,7 +84,7 @@ return (
 <View>
 
     <Text style={styles.criteriaName}> {this.props.criteria}</Text>
-        <View style={styles.radioButtons} onChange={(event) => { this.props.handleChange(event, 'criteriaTwo') }}>
+        <View style={styles.radioButtons} onChange={(event) => { this.props.handleChange(event, this.props.number) }}>
         <RadioButton
             value="first"
             status={checked === 'first' ? 'checked' : 'unchecked'}
@@ -123,9 +123,9 @@ class NewItem extends Component {
 
     state = {
         categoryName: this.props.route.params.item.catagoryTitle,
-        criteriaOne: this.props.route.params.criteriaOne,
-        criteriaTwo: this.props.route.params.criteriaTwo,
-        criteriaThree: this.props.route.params.criteriaThree,
+        criteriaOne: this.props.route.params.item.criteriaOne,
+        criteriaTwo: this.props.route.params.item.criteriaTwo,
+        criteriaThree: this.props.route.params.item.criteriaThree,
         one:'',
         two:'',
         three:'',
@@ -136,6 +136,7 @@ class NewItem extends Component {
             ...this.state,
             [typeOf]: event.target.value
         })
+        console.log(this.state)
     }
 
     render() {
@@ -162,7 +163,7 @@ class NewItem extends Component {
 
                  </View>
                     <View style={styles.criteriaButton}>
-                    <Button onPress={() => console.log('adding new item')} title={'Add new item'}></Button>
+                    <Button onPress={() => console.log(this.state)} title={'Add new item'}></Button>
                 </View>
                 </View>
 <BottomMenu />

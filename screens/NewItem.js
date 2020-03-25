@@ -122,10 +122,13 @@ class NewItem extends Component {
 
 
     state = {
-        categoryName: this.props.route.params.categoryName,
+        categoryName: this.props.route.params.item.catagoryTitle,
         criteriaOne: this.props.route.params.criteriaOne,
         criteriaTwo: this.props.route.params.criteriaTwo,
         criteriaThree: this.props.route.params.criteriaThree,
+        one:'',
+        two:'',
+        three:'',
     }
 
     handleChange = (event, typeOf) => {
@@ -137,7 +140,7 @@ class NewItem extends Component {
 
     render() {
 
-        console.log(this.props)
+        console.log('checking props new item', this.props)
 
         return (
             <View style={styles.box}>
@@ -145,13 +148,13 @@ class NewItem extends Component {
            
             <View style={styles.home}>
                 <View style={styles.display}>
-                        <Text style={styles.title}>{this.props.route.params.category}{this.props.route.params.categoryName}</Text>
+                        <Text style={styles.title}>{this.state.categoryName}</Text>
                 <br></br>
 
 
-                        <Display handleChange={this.handleChange} criteria={this.props.route.params.criteriaOne} />
-                        <Display handleChange={this.handleChange} criteria={this.props.route.params.criteriaTwo} />
-                        <Display handleChange={this.handleChange} criteria={this.props.route.params.criteriaThree} />
+                        <Display handleChange={this.handleChange} criteria={this.state.criteriaOne} number={'one'} />
+                        <Display handleChange={this.handleChange} criteria={this.state.criteriaTwo} number={'two'} />
+                        <Display handleChange={this.handleChange} criteria={this.state.criteriaThree} number={'three'} />
             <br></br>
 
                     <TextInput placeholder={'Sub Category'}

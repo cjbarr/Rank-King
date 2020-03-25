@@ -81,10 +81,10 @@ let item = 'potato'
         <Text>What</Text>
 
         {arrayMap &&
-          arrayMap.map(item=>(<View key={item} style={styles.display}> 
+          arrayMap.map(item=>(<View key={item.catagoryTitle} style={styles.display}> 
           <Text onPress={() => { this.props.navigation.navigate('CategoryScreen',{item}) }} 
-          style={styles.Category}>{item}</Text>
-            <Text style={styles.topRated}>{item} John 👑</Text>
+          style={styles.Category}>{item.catagoryTitle}</Text>
+            <Text style={styles.topRated}>{item.catagoryTitle} John 👑</Text>
             <Text style={styles.ratings}>Flavor: 2</Text>
             <Text style={styles.ratings}>Cost: 3</Text>
             <Text style={styles.ratings}>Quality: 5</Text>
@@ -105,7 +105,7 @@ let item = 'potato'
 function HomeScreen(){
   const navigation = useNavigation();
 
-let catArray=[];
+let catArray=[{catagoryTitle:"Tacos", criteriaOne:"Flavor", criteriaTwo:"Price", criteriaThree:"Quality"}, "Burritos", "Enchiladas", "Posole", "Margarita"];
 let count =0;
   const client = Stitch.defaultAppClient;
   const db = client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('rankdb');
@@ -119,7 +119,7 @@ let count =0;
       .then(results =>
         results.map(
           // object => console.log(object.catagoryTitle)
-          object => catArray.push(object.catagoryTitle)
+          object => catArray.push(object)
           // object => <Display catagory={object.catagoryTitle} navigation={navigation} />
         )
       )

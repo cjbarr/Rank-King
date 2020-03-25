@@ -76,6 +76,7 @@ const AddButton = (props) => {
             criteriaOne: props.state.criteriaOne,
             criteriaTwo: props.state.criteriaTwo,
             criteriaThree: props.state.criteriaThree,
+            [client.auth.user.id]: 'catagoryList'
         })
     }
     

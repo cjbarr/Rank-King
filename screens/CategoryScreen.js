@@ -5,6 +5,11 @@ import { ScrollView } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
 import Header from './Header';
 import BottomMenu from './BottomMenu';
+const {
+    Stitch,
+    RemoteMongoClient,
+    AnonymousCredential
+} = require('mongodb-stitch-browser-sdk');
 
 
 
@@ -47,83 +52,52 @@ const styles = StyleSheet.create({
 
 
 class Display extends Component {
+    
     state = {
-        Tacos: ['Tacos',
-            'Burritos',
-            'Soda',
-            'Ice Cream',
-            'Dip']
     }
+
+
+    client = Stitch.defaultAppClient;
+    db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('rankdb');
+
+
+    getItems() {
+        console.log('in get Catagory', this.client, this.db)
+        let catagories = this.db.collection('ranks');
+        catagories.find({ itemCatagory: this.props.catagoryTitle }, { limit: 10 })
+            .toArray()
+            .then(results => this.setState({ itemState: results })
+            ).then(
+                console.log('state set'))
+    }
+
+    
+    componentDidMount() {
+        this.getItems();
+    }
+
+critOne ='object.'+this.props.one
+
     render() {
-        
+        console.log('passed down props', this.props)
         return (
+
             <View>
-               
-                     <View style={styles.display}>
-                        <Text style={styles.topRated}>Taco John 👑</Text>
-                        <Text style={styles.ratings}>Flavor: 2</Text>
-                        <Text style={styles.ratings}>Cost: 3</Text>
-                        <Text style={styles.ratings}>Quality: 5</Text>
-                        <TouchableOpacity>
-                            <Button onPress={() => { console.log('you pressed edit') }} title="Edit Item"></Button>
-                        </TouchableOpacity>
-                </View>
+                {this.state.itemState &&
+                    this.state.itemState.map(object => (
+
                 <View style={styles.display}>
-                    <Text style={styles.topRated}>Taco Pete</Text>
-                    <Text style={styles.ratings}>Flavor: 2</Text>
-                    <Text style={styles.ratings}>Cost: 3</Text>
-                    <Text style={styles.ratings}>Quality: 5</Text>
+                    <Text style={styles.topRated}>{object.itemName}</Text>
+                    <Text style={styles.ratings}>{this.props.one}:{object.{this.props.one}} </Text>
+                    <Text style={styles.ratings}>{this.props.two}:</Text>
+                    <Text style={styles.ratings}>{this.props.three}: 5</Text>
                     <TouchableOpacity>
                         <Button onPress={() => { console.log('you pressed edit') }} title="Edit Item"></Button>
                     </TouchableOpacity>
                 </View>
-                <View style={styles.display}>
-                    <Text style={styles.topRated}>Taco Cart</Text>
-                    <Text style={styles.ratings}>Flavor: 2</Text>
-                    <Text style={styles.ratings}>Cost: 3</Text>
-                    <Text style={styles.ratings}>Quality: 5</Text>
-                    <TouchableOpacity>
-                        <Button onPress={() => { console.log('you pressed edit') }} title="Edit Item"></Button>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.display}>
-                    <Text style={styles.topRated}>Taco Shack</Text>
-                    <Text style={styles.ratings}>Flavor: 2</Text>
-                    <Text style={styles.ratings}>Cost: 3</Text>
-                    <Text style={styles.ratings}>Quality: 5</Text>
-                    <TouchableOpacity>
-                        <Button onPress={() => { console.log('you pressed edit') }} title="Edit Item"></Button>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.display}>
-                    <Text style={styles.topRated}>Taco Tunnel</Text>
-                    <Text style={styles.ratings}>Flavor: 2</Text>
-                    <Text style={styles.ratings}>Cost: 3</Text>
-                    <Text style={styles.ratings}>Quality: 5</Text>
-                    <TouchableOpacity>
-                        <Button onPress={() => { console.log('you pressed edit') }} title="Edit Item"></Button>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.display}>
-                    <Text style={styles.topRated}>Taco Tornado</Text>
-                    <Text style={styles.ratings}>Flavor: 2</Text>
-                    <Text style={styles.ratings}>Cost: 3</Text>
-                    <Text style={styles.ratings}>Quality: 5</Text>
-                    <TouchableOpacity>
-                        <Button onPress={() => { console.log('you pressed edit') }} title="Edit Item"></Button>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.display}>
-                    <Text style={styles.topRated}>Tacos?</Text>
-                    <Text style={styles.ratings}>Flavor: 2</Text>
-                    <Text style={styles.ratings}>Cost: 3</Text>
-                    <Text style={styles.ratings}>Quality: 5</Text>
-                    <TouchableOpacity>
-                        <Button onPress={() => { console.log('you pressed edit') }} title="Edit Item"></Button>
-                    </TouchableOpacity>
-                </View>
+                    ))}
             </View>
-        );
+                    )
     }
 }
 
@@ -131,13 +105,13 @@ class Display extends Component {
 class CategoryScreen extends Component {
     render() {
 
-
+        console.log('is this my state', this.props)
 
         return (<View style={styles.box}>
             <Header />
-            <Text style={styles.Category}>{this.props.route.params.category}</Text>
+            <Text style={styles.Category}>{this.props.route.params.catagoryTitle}</Text>
             <ScrollView style={styles.home}>
-                <Display />
+                        <Display one={this.props.route.params.criteriaOne} two={this.props.route.params.criteriaTwo} three={this.props.route.params.criteriaThree}  catagoryTitle={this.props.route.params.catagoryTitle} />
 
 
 

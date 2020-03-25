@@ -73,7 +73,7 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
   getCatagory() {
   console.log('in get Catagory', this.client, this.db)
   let catagories = this.db.collection('ranks');
-  catagories.find({ owner_id: this.client.auth.user.id }, { limit: 10 })
+  catagories.find({ [this.client.auth.user.id]: 'catagoryList'  }, { limit: 10 })
     .toArray()
     .then(results => this.setState({catState: results})
       ).then(

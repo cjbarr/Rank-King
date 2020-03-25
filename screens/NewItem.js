@@ -84,9 +84,10 @@ function AddButton(props) {
     const db = client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('rankdb');
 
    function addItem() {
+       console.log('add props empty itemCat', props.state)
         db.collection('ranks').insertOne({
             owner_id: client.auth.user.id,
-            itemCatagory:props.state.categoryName,
+            itemCatagory:props.name,
             itemName: props.state.itemName,
             [props.state.criteriaOne]: props.state.one,
             [props.state.criteriaTwo]: props.state.two,
@@ -193,7 +194,7 @@ class NewItem extends Component {
     }
 
     handleText=(event)=>{
-        this.setState({
+        this.setState({...this.state,
             itemName:event.target.value
         })
     }
@@ -218,7 +219,7 @@ class NewItem extends Component {
                         <Display handleChange={this.handleChange} criteria={this.state.criteriaThree} number={'three'} />
             <br></br>
 
-                    <AddButton state={this.state} />
+                    <AddButton name={this.state.categoryName} state={this.state} />
                    
                 </View>
                 </View>

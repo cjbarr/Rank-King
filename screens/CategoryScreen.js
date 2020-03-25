@@ -88,7 +88,7 @@ critOne ='object.'+this.props.one
 
                 <View style={styles.display}>
                     <Text style={styles.topRated}>{object.itemName}</Text>
-                    <Text style={styles.ratings}>{this.props.one}:{object.{this.props.one}} </Text>
+                    <Text style={styles.ratings}>{this.props.one}: </Text>
                     <Text style={styles.ratings}>{this.props.two}:</Text>
                     <Text style={styles.ratings}>{this.props.three}: 5</Text>
                     <TouchableOpacity>

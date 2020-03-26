@@ -69,12 +69,14 @@ function DeleteButton(props) {
     const navigation = useNavigation();
 
     function deleteItem(itemToDelete) {
+        if(confirm('Delete Item?')===true){
         console.log(props, 'props')
         console.log('item to delete', itemToDelete)
         let catagories = props.db.collection('ranks');
         catagories.deleteOne({ "_id": itemToDelete })
             .then(
                 console.log('Deleted Item'))
+            }
     }
 
     return (

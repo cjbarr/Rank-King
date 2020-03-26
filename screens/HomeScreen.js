@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
 },
 addFont:{marginVertical:'auto',
 color:'white',
-fontSize:24,
+fontSize:30,
   textAlign: 'center',
 },
 });

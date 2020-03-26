@@ -5,6 +5,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
 import Header from './Header';
 import BottomMenu from './BottomMenu';
+import { useNavigation } from '@react-navigation/native';
 const {
     Stitch,
     RemoteMongoClient,
@@ -51,6 +52,28 @@ const styles = StyleSheet.create({
 });
 
 
+function DeleteButton(props) {
+    const navigation = useNavigation();
+
+    function deleteItem(itemToDelete) {
+        console.log(props, 'props')
+        console.log('item to delete', itemToDelete)
+        let catagories = props.db.collection('ranks');
+        catagories.deleteOne({ "_id": itemToDelete })
+            .then(
+                console.log('Deleted Item'))
+    }
+
+    return (
+
+        <TouchableOpacity>
+            <Button onPress={() => { console.log('you pressed edit') }} title="Edit Item"></Button>
+            <Button onPress={() => { deleteItem(props.object._id); navigation.navigate('Home'); }} title="Delete Item"></Button>
+        </TouchableOpacity>
+
+    )
+}
+
 class Display extends Component {
     
     state = {
@@ -71,14 +94,7 @@ class Display extends Component {
                 console.log('state set'))
     }
 
-    deleteItem(itemToDelete) {
-        console.log(itemToDelete)
-        let catagories = this.db.collection('ranks');
-        catagories.deleteOne({"_id":itemToDelete  })
-           .then(
-                console.log('Deleted Item'))
-    }
-
+    
     
     componentDidMount() {
         this.getItems();
@@ -97,10 +113,7 @@ class Display extends Component {
                     <Text style={styles.ratings}>{this.props.one}: </Text>
                     <Text style={styles.ratings}>{this.props.two}:</Text>
                     <Text style={styles.ratings}>{this.props.three}: 5</Text>
-                    <TouchableOpacity>
-                        <Button onPress={() => { console.log('you pressed edit') }} title="Edit Item"></Button>
-                                <Button onPress={() => { this.deleteItem(object._id) }} title="Delete Item"></Button>
-                    </TouchableOpacity>
+                    <DeleteButton db={this.db} client={this.client} object={object}/>
                 </View>
                     ))}
             </View>

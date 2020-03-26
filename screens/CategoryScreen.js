@@ -21,34 +21,47 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 34,
         textAlign: 'center',
-        backgroundColor: 'darkgrey',
+        backgroundColor: 'gold',
         height:'8%'
     },
     topRated: {
-        color: 'red',
-        fontSize: 18,
-        fontWeight: 'bold'
+        color: 'black',
+        fontWeight: 'bold',
+        fontSize: 28,
+        textAlign: 'center',
+        backgroundColor: 'gold',
     },
     ratings: {
-        color: 'green',
-        fontSize: 12,
-        fontStyle: 'italic'
+        color: 'black',
+        fontSize: 16,
+        fontStyle: 'italic',
+        fontWeight: 'bold',
+        textAlign:'center'
     },
     home: {
-        backgroundColor: 'coral',
+        backgroundColor: 'royalblue',
     },
     box: {
         height: '100%',
-        backgroundColor: 'coral',
+        backgroundColor: 'royalblue',
 
+    },
+    values:{
+        color:'red',
     },
     display: {
         backgroundColor: 'antiquewhite',
         marginTop: 10,
         marginBottom: 10,
-        marginRight: 10,
-        marginLeft: 10
-    }
+        marginRight: 'auto',
+        marginLeft: 'auto',
+        width: '85%',
+        borderStyle: 'solid',
+        borderColor: 'black',
+        borderWidth: '3px',
+        borderRadius: '15px',
+        overflow: 'hidden',
+    },
 });
 
 
@@ -113,9 +126,9 @@ class Display extends Component {
 
                 <View key={object.itemName} style={styles.display}>
                     <Text style={styles.topRated}>{object.itemName}: {object.score}</Text>
-                            <Text style={styles.ratings}>{this.props.one}: {object[this.crit1]} </Text>
-                            <Text style={styles.ratings}>{this.props.two}: {object[this.crit2]}</Text>
-                    <Text style={styles.ratings}>{this.props.three}: {object[this.crit3]}</Text>
+                            <Text style={styles.ratings}>{this.props.one}:<Text style={styles.values}>{object[this.crit1]} </Text> </Text>
+                            <Text style={styles.ratings}>{this.props.two}: <Text style={styles.values}>{object[this.crit2]} </Text></Text>
+                            <Text style={styles.ratings}>{this.props.three}: <Text style={styles.values}>{object[this.crit3]} </Text></Text>
                     <DeleteButton criteria={this.props} db={this.db} client={this.client} object={object}/>
                 </View>
                     ))

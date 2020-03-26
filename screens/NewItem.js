@@ -5,6 +5,12 @@ import * as WebBrowser from 'expo-web-browser';
 import { RadioButton } from 'react-native-paper';
 import Header from './Header';
 import BottomMenu from './BottomMenu';
+import { useNavigation } from '@react-navigation/native';
+const {
+    Stitch,
+    RemoteMongoClient,
+    AnonymousCredential
+} = require('mongodb-stitch-browser-sdk');
 
 
 
@@ -48,7 +54,7 @@ const styles = StyleSheet.create({
         width: '50%',
         marginLeft: 'auto',
         marginRight: 'auto',
-        fontSize: 16,
+        fontSize: 22,
         textAlign: 'center',
     },
     criteriaButton: { 
@@ -70,42 +76,78 @@ const styles = StyleSheet.create({
 });
 
 
+
+function AddButton(props) {
+   
+    const navigation = useNavigation();
+    const client = Stitch.defaultAppClient;
+    const db = client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('rankdb');
+
+   function addItem() {
+       console.log('add props empty itemCat', props.state)
+       console.log(props.name)
+        db.collection('ranks').insertOne({
+            owner_id: client.auth.user.id,
+            itemCatagory: props.name,
+            itemName: props.state.itemName,
+            [props.state.criteriaOne]: props.state.one,
+            [props.state.criteriaTwo]: props.state.two,
+            [props.state.criteriaThree]: props.state.three,
+        })
+        console.log('item added!')
+    }
+
+    return(
+<View style={styles.criteriaButton}>
+    <Button onPress={() => { navigation.navigate('Home'); addItem()}} title={'Add new item'}></Button>
+</View>
+    )}
+
 class Display extends Component {
     state = {
         checked: 'first',
     };
+
+
+    
   
     render() {
         const { checked } = this.state;
 return (
 <View>
 
-    <Text style={styles.criteriaName}> Criteria 1</Text>
-    <View style={styles.radioButtons}>
+    <Text style={styles.criteriaName}> {this.props.criteria}</Text>
+        <View style={styles.radioButtons} >
         <RadioButton
-            value="first"
-            status={checked === 'first' ? 'checked' : 'unchecked'}
-            onPress={() => { this.setState({ checked: 'first' }); }}
+                onClick={(event) => { this.props.handleChange(this.props.number, 1) }}
+            value='1'
+            status={checked === 1 ? 'checked' : 'unchecked'}
+            onPress={() => { this.setState({ checked: 1 })
+        }}
         />
         <RadioButton
-            value="second"
-            status={checked === 'second' ? 'checked' : 'unchecked'}
-            onPress={() => { this.setState({ checked: 'second' }); }}
+                onClick={(event) => { this.props.handleChange(this.props.number, 2) }}
+            value= '2'
+            status={checked === 2 ? 'checked' : 'unchecked'}
+            onPress={() => { this.setState({ checked: 2 }); }}
         />
         <RadioButton
-            value="third"
-            status={checked === 'third' ? 'checked' : 'unchecked'}
-            onPress={() => { this.setState({ checked: 'third' }); }}
+                onClick={(event) => { this.props.handleChange(this.props.number, 3) }}
+            value='3'
+            status={checked === 3 ? 'checked': 'unchecked'}
+            onPress={() => { this.setState({ checked: 3 }); }}
         />
         <RadioButton
-            value="fourth"
-            status={checked === 'fourth' ? 'checked' : 'unchecked'}
-            onPress={() => { this.setState({ checked: 'fourth' }); }}
+                onClick={(event) => { this.props.handleChange(this.props.number, 4) }}
+            value='4'
+            status={checked === 4 ? 'checked' : 'unchecked'}
+            onPress={() => { this.setState({ checked: 4 }); }}
         />
         <RadioButton
-            value="fifth"
-            status={checked === 'fifth' ? 'checked' : 'unchecked'}
-            onPress={() => { this.setState({ checked: 'fifth' }); }}
+                onClick={(event) => { this.props.handleChange(this.props.number, 5) }}
+            value='5'
+            status={checked === 5 ? 'checked' : 'unchecked'}
+            onPress={() => { this.setState({ checked: 5 }); }}
         />
     </View>
    
@@ -116,9 +158,37 @@ return (
 
 class NewItem extends Component {
 
+    // client = Stitch.defaultAppClient;
+    // db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('rankdb');
+    
+
+    state = {
+        categoryName: this.props.route.params.categoryName || this.props.route.params.catagoryTitle,
+        criteriaOne: this.props.route.params.criteriaOne,
+        criteriaTwo: this.props.route.params.criteriaTwo,
+        criteriaThree: this.props.route.params.criteriaThree,
+        one:'',
+        two:'',
+        three:'',
+        itemName:'',
+    }
+
+    handleChange = (typeOf, score) => {
+        this.setState({
+            ...this.state,
+            [typeOf]: score
+        })
+    }
+
+    handleText=(event)=>{
+        this.setState({...this.state,
+            itemName:event.target.value
+        })
+    }
 
     render() {
 
+        console.log('checking props new item', this.props)
 
         return (
             <View style={styles.box}>
@@ -126,21 +196,18 @@ class NewItem extends Component {
            
             <View style={styles.home}>
                 <View style={styles.display}>
-                        <Text style={styles.title}>{this.props.route.params.category}</Text>
+                        <Text style={styles.title}>{this.state.categoryName}</Text>
                 <br></br>
-
-
-            <Display />
-            <Display />
-            <Display />
+                        <TextInput placeholder={'Item Name'} onChange={this.handleText}
+                            style={styles.criteriaInput} />
+<br></br>
+                        <Display handleChange={this.handleChange} criteria={this.state.criteriaOne} number={'one'} />
+                        <Display handleChange={this.handleChange} criteria={this.state.criteriaTwo} number={'two'} />
+                        <Display handleChange={this.handleChange} criteria={this.state.criteriaThree} number={'three'} />
             <br></br>
 
-                    <TextInput placeholder={'Sub Category'}
-                        style={styles.criteriaInput}/>
-
-                 </View>
-                    <View style={styles.criteriaButton}>
-                    <Button onPress={() => console.log('adding new item')} title={'Add new item'}></Button>
+                    <AddButton name={this.state.categoryName} state={this.state} />
+                   
                 </View>
                 </View>
 <BottomMenu />

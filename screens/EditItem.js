@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
 
-    display: {
+   display: {
         backgroundColor: 'antiquewhite',
         marginTop: 'auto',
         marginBottom: 'auto',
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         borderWidth: '3px',
         borderRadius: '15px',
         overflow: 'hidden',
-        height: '90%',
+        height:'90%',
     },
     nameInput: {
         borderColor: 'black',
@@ -67,8 +67,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     criteriaButton: {
-        marginRight: 10,
-        marginLeft: 10,
+        marginRight: 'auto',
+        marginLeft: 'auto',
+        borderRadius: '5px',
+        overflow: 'hidden',
 
     },
     radioButtons: {

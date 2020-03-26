@@ -66,8 +66,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     criteriaButton: { 
-        marginRight: 10,
-        marginLeft: 10,
+        marginRight: 'auto',
+        marginLeft: 'auto',
+        borderRadius:'5px',
+        overflow: 'hidden',
         
     },
     radioButtons:{

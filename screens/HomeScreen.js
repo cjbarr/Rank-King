@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   containerCat:{backgroundColor:'black',
   height:'10%',
 },
-addFont:{marginTop:5,
+addFont:{marginVertical:'auto',
 color:'white',
 fontSize:24,
   textAlign: 'center',

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         fontSize: 36,
         color: 'white',
         textAlign: 'center',
-        height:60,
+        marginVertical:'auto'
     },
       back: {
         fontSize: 12,
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 const Footer = (props) => {
     const navigation = useNavigation();
     return (<View style={styles.menu}>
-        <View style={styles.box}>
+        <View style={styles.add}>
             <TouchableOpacity>
                 <Text onPress={() => { navigation.navigate('Home') }}style={styles.add}>Home</Text>
         </TouchableOpacity>

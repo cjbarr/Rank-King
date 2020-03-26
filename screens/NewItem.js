@@ -93,6 +93,7 @@ function AddButton(props) {
             [props.state.criteriaOne]: props.state.one,
             [props.state.criteriaTwo]: props.state.two,
             [props.state.criteriaThree]: props.state.three,
+            score:Number(( (props.state.one + props.state.two + props.state.three) / 3).toFixed(2))
         })
         console.log('item added!')
     }

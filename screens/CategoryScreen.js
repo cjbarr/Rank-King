@@ -112,7 +112,7 @@ class Display extends Component {
                     this.state.itemState.map(object => (
 
                 <View key={object.itemName} style={styles.display}>
-                    <Text style={styles.topRated}>{object.itemName}</Text>
+                    <Text style={styles.topRated}>{object.itemName}: {object.score}</Text>
                             <Text style={styles.ratings}>{this.props.one}: {object[this.crit1]} </Text>
                             <Text style={styles.ratings}>{this.props.two}: {object[this.crit2]}</Text>
                     <Text style={styles.ratings}>{this.props.three}: {object[this.crit3]}</Text>

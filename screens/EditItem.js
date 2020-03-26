@@ -17,22 +17,30 @@ const {
 
 const styles = StyleSheet.create({
     home: {
-        backgroundColor: 'coral',
+        backgroundColor: 'royalblue',
         height: '80%',
     },
     title: {
-        backgroundColor: 'darkgrey',
-        fontSize: 36,
+        backgroundColor: 'gold',
+        fontSize: 34,
         textAlign: 'center',
+        color: 'blue',
+        fontWeight: 'bold',
     },
 
     display: {
         backgroundColor: 'antiquewhite',
-        marginTop: 10,
-        marginBottom: 0,
-        marginRight: 10,
-        marginLeft: 10,
-        height: '85%',
+        marginTop: 'auto',
+        marginBottom: 'auto',
+        marginRight: 'auto',
+        marginLeft: 'auto',
+        width: '85%',
+        borderStyle: 'solid',
+        borderColor: 'black',
+        borderWidth: '3px',
+        borderRadius: '15px',
+        overflow: 'hidden',
+        height: '90%',
     },
     nameInput: {
         borderColor: 'black',

@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 34,
     textAlign:'center',
-    backgroundColor:'darkgrey',
+    backgroundColor:'gold',
   },
   topRated: {
     color: 'red',
@@ -36,23 +36,29 @@ const styles = StyleSheet.create({
     fontStyle: 'italic'
   },
    home: {
-    backgroundColor: 'coral',
+    backgroundColor: 'royalblue',
   },
   box: {
     height: '100%',
-    backgroundColor: 'coral',
+    backgroundColor: 'royalblue',
   },
   xButton: {
     textAlign:'right',
-    backgroundColor: 'darkgrey',
+    backgroundColor: 'gold',
   },
   display: {
     backgroundColor: 'antiquewhite',
     marginTop:10,
     marginBottom:10,
-    marginRight:10,
-    marginLeft:10
-  },
+    marginRight:'auto',
+    marginLeft:'auto',
+    width:'85%',
+    borderStyle: 'solid',
+    borderColor:'black',
+    borderWidth:'3px',
+    borderRadius: '15px',
+    overflow:'hidden',
+    },
   containerCat:{backgroundColor:'black',
   height:'10%',
 },

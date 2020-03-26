@@ -13,6 +13,7 @@ import CategoryScreen from './screens/CategoryScreen';
 import NewCategory from './screens/NewCategory';
 import NewItem from './screens/NewItem';
 import SplashScreen from './screens/SplashScreen';
+import EditItem from './screens/EditItem'
 
 
 const {
@@ -37,17 +38,6 @@ client.auth.loginWithCredential(new AnonymousCredential()).then(user =>
 }).catch(err => {
     console.error(err)
 });
-
-// function addCatagory() {
-//   db.collection('ranks').insertOne({
-//     owner_id: client.auth.user.id,
-//     catagoryTitle: state.categoryName,
-//     criteriaOne: state.criteriaOne,
-//     criteriaTwo: state.criteriaTwo,
-//     criteriaThree: state.criteriaThree,
-//   })
-// }
-
 
 
 
@@ -74,6 +64,7 @@ return(
       <Stack.Screen name="NewItem" component={NewItem} />
       <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
       <Stack.Screen name="NewCategory" component={NewCategory} />
+      <Stack.Screen name ="EditItem" component={EditItem} />
     
    
  

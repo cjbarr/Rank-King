@@ -67,7 +67,7 @@ function DeleteButton(props) {
     return (
 
         <TouchableOpacity>
-            <Button onPress={() => { console.log('you pressed edit') }} title="Edit Item"></Button>
+            <Button onPress={() => { navigation.navigate('EditItem', props) }} title="Edit Item"></Button>
             <Button onPress={() => { deleteItem(props.object._id); navigation.navigate('Home'); }} title="Delete Item"></Button>
         </TouchableOpacity>
 
@@ -113,7 +113,7 @@ class Display extends Component {
                     <Text style={styles.ratings}>{this.props.one}: </Text>
                     <Text style={styles.ratings}>{this.props.two}:</Text>
                     <Text style={styles.ratings}>{this.props.three}: 5</Text>
-                    <DeleteButton db={this.db} client={this.client} object={object}/>
+                    <DeleteButton criteria={this.props} db={this.db} client={this.client} object={object}/>
                 </View>
                     ))}
             </View>

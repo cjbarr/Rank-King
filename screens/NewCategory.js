@@ -84,7 +84,7 @@ const AddButton = (props) => {
     return (
 
         <View style={styles.criteriaButton}>
-            <Button onPress={() => {navigation.navigate('NewItem', props.state); addCatagory()}} title={'Add Category'}></Button>
+            <Button onPress={() => addCatagory()} title={'Add Category'}></Button>
         </View>
         
     )

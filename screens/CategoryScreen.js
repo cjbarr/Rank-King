@@ -99,9 +99,12 @@ class Display extends Component {
     componentDidMount() {
         this.getItems();
     }
-
+    crit1=this.props.one
+    crit2 = this.props.two
+    crit3 = this.props.three
     render() {
         console.log('passed down props', this.props)
+        console.log(this.crit1)
         return (
 
             <View>
@@ -110,12 +113,13 @@ class Display extends Component {
 
                 <View key={object.itemName} style={styles.display}>
                     <Text style={styles.topRated}>{object.itemName}</Text>
-                    <Text style={styles.ratings}>{this.props.one}: </Text>
-                    <Text style={styles.ratings}>{this.props.two}:</Text>
-                    <Text style={styles.ratings}>{this.props.three}: 5</Text>
+                            <Text style={styles.ratings}>{this.props.one}: {object[this.crit1]} </Text>
+                            <Text style={styles.ratings}>{this.props.two}: {object[this.crit2]}</Text>
+                    <Text style={styles.ratings}>{this.props.three}: {object[this.crit3]}</Text>
                     <DeleteButton criteria={this.props} db={this.db} client={this.client} object={object}/>
                 </View>
-                    ))}
+                    ))
+                    }
             </View>
                     )
     }

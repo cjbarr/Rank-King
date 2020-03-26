@@ -42,6 +42,10 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: 'coral',
   },
+  xButton: {
+    textAlign:'right',
+    backgroundColor: 'darkgrey',
+  },
   display: {
     backgroundColor: 'antiquewhite',
     marginTop:10,
@@ -90,6 +94,20 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
     this.setState({refresh:'true'})
   }
 
+
+  deleteItem(itemToDelete, catToDelete) {
+    if(confirm('Delete catagory and associated items?')=== true){
+  console.log('item to delete', itemToDelete)
+    console.log('cat to delete', catToDelete)
+  let catagories = this.db.collection('ranks');
+  catagories.deleteMany({ "_id": itemToDelete } )
+    .then(
+      catagories.deleteMany({ "itemCatagory": catToDelete })
+      ).then(
+        console.log('deleted Catagory and items!')
+      )
+}
+  }
   render() {
 
 
@@ -103,8 +121,8 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
        this.state.catState.map(object => ( 
 
        <View key={object.catagoryTitle} style={styles.display}> 
-          <Text onPress={() => { this.props.navigation.navigate('CategoryScreen',object) }} 
-          style={styles.Category}>{object.catagoryTitle}</Text>
+          <View><Text onPress={() => { this.props.navigation.navigate('CategoryScreen',object) }} 
+             style={styles.Category}>{object.catagoryTitle}</Text><Text onPress={() => { this.deleteItem(object._id, object.catagoryTitle)}} style={styles.xButton}>❌</Text></View>
           {/* <Text style ={styles.ratings}>Hold</Text> */}
             <Text style={styles.topRated}>{object.criteriaOne}</Text>
             <Text style={styles.topRated}>{object.criteriaTwo}</Text>

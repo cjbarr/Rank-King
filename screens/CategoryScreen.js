@@ -68,7 +68,7 @@ function DeleteButton(props) {
 
         <TouchableOpacity>
             <Button onPress={() => { navigation.navigate('EditItem', props) }} title="Edit Item"></Button>
-            <Button onPress={() => { deleteItem(props.object._id); navigation.navigate('Home'); }} title="Delete Item"></Button>
+            <Button color='grey' onPress={() => { deleteItem(props.object._id); navigation.navigate('Home'); }} title="Delete Item"></Button>
         </TouchableOpacity>
 
     )
@@ -87,7 +87,7 @@ class Display extends Component {
     getItems() {
         console.log('in get Catagory', this.client, this.db)
         let catagories = this.db.collection('ranks');
-        catagories.find({ itemCatagory: this.props.catagoryTitle }, { limit: 10 })
+        catagories.find({ itemCatagory: this.props.catagoryTitle }, { limit: 20 })
             .toArray()
             .then(results => this.setState({ itemState: results })
             ).then(

@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontStyle: 'italic',
         fontWeight: 'bold',
-        textAlign:'center'
+        textAlign:'center',
     },
     home: {
         backgroundColor: 'royalblue',
@@ -126,7 +126,7 @@ class Display extends Component {
                 {this.state.itemState &&
                     this.state.itemState.map(object => (
 
-                <View key={object.itemName} style={styles.display}>
+                <View key={object._id} style={styles.display}>
                     <Text style={styles.topRated}>{object.itemName}: {object.score}</Text>
                             <Text style={styles.ratings}>{this.props.one}:<Text style={styles.values}>{object[this.crit1]} </Text> </Text>
                             <Text style={styles.ratings}>{this.props.two}: <Text style={styles.values}>{object[this.crit2]} </Text></Text>

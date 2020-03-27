@@ -26,14 +26,12 @@ const styles = StyleSheet.create({
     backgroundColor:'gold',
   },
   topRated: {
-    color: 'black',
     fontSize: 16,
     fontStyle: 'italic',
     fontWeight: 'bold',
     textAlign: 'center'
   },
   ratings: {
-    color: 'black',
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center'
@@ -93,10 +91,10 @@ class Top extends Component{
 
   render(){
     return(
-      <View style={styles.topRated}>
+      <View>
       {this.state.top &&
       <>
-          <Text><Text style={styles.ratings}>👑</Text><Text style={styles.ratings}> {this.state.top[0].itemName}</Text></Text>
+          <Text style={styles.ratings}>👑{this.state.top[0].itemName}</Text>
   </>
   }
   </View>
@@ -164,13 +162,9 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
        <View key={object.catagoryTitle} style={styles.display}> 
           <View><Text onPress={() => { this.props.navigation.navigate('CategoryScreen',object) }} 
              style={styles.Category}>{object.catagoryTitle}</Text><Text onPress={() => { this.deleteItem(object._id, object.catagoryTitle)}} style={styles.xButton}>❌</Text></View>
-          {/* <Text style ={styles.ratings}>Hold</Text> */}
 
 
           <Top cat={object.catagoryTitle} db={this.db} client={this.client}></Top>
-            {/* <Text style={styles.topRated}>{object.criteriaOne}</Text>
-            <Text style={styles.topRated}>{object.criteriaTwo}</Text>
-            <Text style={styles.topRated}>{object.criteriaThree}</Text> */}
         <TouchableOpacity>
           <Button onPress={()=>{this.props.navigation.navigate('NewItem',object)}} title="Add New Item"></Button>
           </TouchableOpacity>

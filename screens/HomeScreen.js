@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   ratings: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center'
   },
@@ -44,8 +44,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'royalblue',
   },
   xButton: {
-    textAlign:'right',
+    textAlign:'center',
     backgroundColor: 'gold',
+  },
+  criteria:{
+    backgroundColor:'gold',
+    fontSize: 14,
+    // fontStyle: 'italic',
+    fontWeight: 'bold',
+    textAlign: 'center'
   },
   display: {
     backgroundColor: 'antiquewhite',
@@ -114,7 +121,7 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
   getCatagory() {
  
   let catagories = this.db.collection('ranks');
-  catagories.find({ [this.client.auth.user.id]: 'catagoryList'  }, { limit: 50 })
+    catagories.find({ [this.client.auth.user.id]: 'catagoryList' }, { sort: {catagoryTitle : 1 } })
     .toArray()
     .then(results => this.setState({catState: results})
       ).then(
@@ -129,27 +136,24 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
   }
 
 
-  componentWillMount() {
-    this.setState({refresh:'true'})
-  }
-
 
   deleteItem(itemToDelete, catToDelete) {
-    if(confirm('Delete catagory and associated items?')=== true){
+    if(confirm('Delete category and associated items?')=== true){
   console.log('item to delete', itemToDelete)
     console.log('cat to delete', catToDelete)
   let catagories = this.db.collection('ranks');
   catagories.deleteMany({ "_id": itemToDelete } )
     .then(
       catagories.deleteMany({ "itemCatagory": catToDelete })
-      ).then(
-        console.log('deleted Catagory and items!')
       )
+      // .then(
+      //   this.props.refresh()
+      // )
 }
   }
   render() {
 
-
+console.log('refresh function', this.props.refresh)
  console.log('catagory prop', this.state)
 
     return (
@@ -161,12 +165,15 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
 
        <View key={object.catagoryTitle} style={styles.display}> 
           <View><Text onPress={() => { this.props.navigation.navigate('CategoryScreen',object) }} 
-             style={styles.Category}>{object.catagoryTitle}</Text><Text onPress={() => { this.deleteItem(object._id, object.catagoryTitle)}} style={styles.xButton}>❌</Text></View>
+             style={styles.Category}>{object.catagoryTitle}</Text>
+             <Text style={styles.criteria}>{object.criteriaOne} | {object.criteriaTwo} | {object.criteriaThree}</Text>
+             </View>
 
 
           <Top cat={object.catagoryTitle} db={this.db} client={this.client}></Top>
         <TouchableOpacity>
           <Button onPress={()=>{this.props.navigation.navigate('NewItem',object)}} title="Add New Item"></Button>
+             <Button color='grey' onPress={() => { this.deleteItem(object._id, object.catagoryTitle) }} title="Remove Category"></Button>
           </TouchableOpacity>
          
       </View>
@@ -179,9 +186,21 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
 }
 
 
+// class HomeDisplay extends Component{
+// state={}
+//   refresh(){
+//   this.setState({fresh:'true'})
 
+//   }
+//   render(){
+//     return(
+// <HomeScreen refresh={this.refresh}></HomeScreen>
+//     )
+//   }
+// }
 
 function HomeScreen(props){
+
   const navigation = useNavigation();
   return (
     <View style={styles.box}>

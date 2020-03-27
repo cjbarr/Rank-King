@@ -102,8 +102,8 @@ class Display extends Component {
     getItems() {
         console.log('in get Catagory', this.client, this.db)
         let catagories = this.db.collection('ranks');
-        catagories.find({ itemCatagory: this.props.catagoryTitle }, { limit: 20 })
-            .toArray()
+        catagories.find({ itemCatagory: this.props.catagoryTitle }, {sort:{score:-1}})
+            .asArray()
             .then(results => this.setState({ itemState: results })
             ).then(
                 console.log('state set'))

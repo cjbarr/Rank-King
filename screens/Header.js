@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
         fontSize: 42,
         color: 'white',
     textAlign:'center',
+    marginHorizontal:'auto',
 marginVertical:'auto'}
 });
 

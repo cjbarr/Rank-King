@@ -84,8 +84,8 @@ class Top extends Component{
   state={};
 
   getTop() {
-    let catagories = this.props.db.collection('ranks');
-    catagories.find({ itemCatagory: this.props.cat }, { sort: { score: -1 } })
+    let categories = this.props.db.collection('ranks');
+    categories.find({ itemCategory: this.props.cat }, { sort: { score: -1 } })
       .asArray()
       .then(results => this.setState({ top: results })
       )
@@ -118,10 +118,10 @@ class Display extends Component {
 db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('rankdb');
 
 
-  getCatagory() {
+  getCategory() {
  
-  let catagories = this.db.collection('ranks');
-    catagories.find({ [this.client.auth.user.id]: 'catagoryList' }, { sort: {catagoryTitle : 1 } })
+  let categories = this.db.collection('ranks');
+    categories.find({ [this.client.auth.user.id]: 'categoryList' }, { sort: {categoryTitle : 1 } })
     .toArray()
     .then(results => this.setState({catState: results})
       ).then(
@@ -132,7 +132,7 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
 
 
   componentDidMount() {
-    this.getCatagory();
+    this.getCategory();
   }
 
 
@@ -141,10 +141,10 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
     if(confirm('Delete category and associated items?')=== true){
   console.log('item to delete', itemToDelete)
     console.log('cat to delete', catToDelete)
-  let catagories = this.db.collection('ranks');
-  catagories.deleteMany({ "_id": itemToDelete } )
+  let categories = this.db.collection('ranks');
+  categories.deleteMany({ "_id": itemToDelete } )
     .then(
-      catagories.deleteMany({ "itemCatagory": catToDelete })
+      categories.deleteMany({ "itemCategory": catToDelete })
       )
       // .then(
       //   this.props.refresh()
@@ -154,7 +154,7 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
   render() {
 
 console.log('refresh function', this.props.refresh)
- console.log('catagory prop', this.state)
+ console.log('category prop', this.state)
 
     return (
       <View>
@@ -163,17 +163,17 @@ console.log('refresh function', this.props.refresh)
         {this.state.catState &&
        this.state.catState.map(object => ( 
 
-       <View key={object.catagoryTitle} style={styles.display}> 
+       <View key={object.categoryTitle} style={styles.display}> 
           <View><Text onPress={() => { this.props.navigation.navigate('CategoryScreen',object) }} 
-             style={styles.Category}>{object.catagoryTitle}</Text>
+             style={styles.Category}>{object.categoryTitle}</Text>
              <Text style={styles.criteria}>{object.criteriaOne} | {object.criteriaTwo} | {object.criteriaThree}</Text>
              </View>
 
 
-          <Top cat={object.catagoryTitle} db={this.db} client={this.client}></Top>
+          <Top cat={object.categoryTitle} db={this.db} client={this.client}></Top>
         <TouchableOpacity>
           <Button onPress={()=>{this.props.navigation.navigate('NewItem',object)}} title="Add New Item"></Button>
-             <Button color='grey' onPress={() => { this.deleteItem(object._id, object.catagoryTitle) }} title="Remove Category"></Button>
+             <Button color='grey' onPress={() => { this.deleteItem(object._id, object.categoryTitle) }} title="Remove Category"></Button>
           </TouchableOpacity>
          
       </View>

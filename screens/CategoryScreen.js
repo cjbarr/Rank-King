@@ -72,8 +72,8 @@ function DeleteButton(props) {
         if(confirm('Delete Item?')===true){
         console.log(props, 'props')
         console.log('item to delete', itemToDelete)
-        let catagories = props.db.collection('ranks');
-        catagories.deleteOne({ "_id": itemToDelete })
+        let categories = props.db.collection('ranks');
+        categories.deleteOne({ "_id": itemToDelete })
             .then(
                 console.log('Deleted Item'))
             }
@@ -100,9 +100,9 @@ class Display extends Component {
 
 
     getItems() {
-        console.log('in get Catagory', this.client, this.db)
-        let catagories = this.db.collection('ranks');
-        catagories.find({ itemCatagory: this.props.catagoryTitle }, {sort:{score:-1}})
+        console.log('in get Category', this.client, this.db)
+        let categories = this.db.collection('ranks');
+        categories.find({ itemCategory: this.props.categoryTitle }, {sort:{score:-1}})
             .asArray()
             .then(results => this.setState({ itemState: results })
             ).then(
@@ -148,9 +148,9 @@ class CategoryScreen extends Component {
 
         return (<View style={styles.box}>
             <Header />
-            <Text style={styles.Category}>{this.props.route.params.catagoryTitle}</Text>
+            <Text style={styles.Category}>{this.props.route.params.categoryTitle}</Text>
             <ScrollView style={styles.home}>
-                        <Display one={this.props.route.params.criteriaOne} two={this.props.route.params.criteriaTwo} three={this.props.route.params.criteriaThree}  catagoryTitle={this.props.route.params.catagoryTitle} />
+                        <Display one={this.props.route.params.criteriaOne} two={this.props.route.params.criteriaTwo} three={this.props.route.params.criteriaThree}  categoryTitle={this.props.route.params.categoryTitle} />
 
 
 

@@ -180,7 +180,7 @@ class EditItem extends Component {
 
 
     state = {
-        categoryName: this.props.route.params.criteria.catagoryTitle,
+        categoryName: this.props.route.params.criteria.categoryTitle,
         criteriaOne: this.props.route.params.criteria.one,
         criteriaTwo: this.props.route.params.criteria.two,
         criteriaThree: this.props.route.params.criteria.three,

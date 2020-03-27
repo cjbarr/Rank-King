@@ -79,14 +79,14 @@ const AddButton = (props) => {
     const db = props.db
     const client = props.client
 
-    function addCatagory (){
+    function addCategory (){
         db.collection('ranks').insertOne({
             owner_id: client.auth.user.id,
-            catagoryTitle: props.state.categoryName,
+            categoryTitle: props.state.categoryName,
             criteriaOne: props.state.criteriaOne,
             criteriaTwo: props.state.criteriaTwo,
             criteriaThree: props.state.criteriaThree,
-            [client.auth.user.id]: 'catagoryList'
+            [client.auth.user.id]: 'categoryList'
         })
     }
     
@@ -94,7 +94,7 @@ const AddButton = (props) => {
     return (
 
         <View style={styles.criteriaButton}>
-            <Button onPress={() =>{navigation.navigate('NewItem', props.state); addCatagory()}} title={'Add Category'}></Button>
+            <Button onPress={() =>{navigation.navigate('NewItem', props.state); addCategory()}} title={'Add Category'}></Button>
         </View>
         
     )

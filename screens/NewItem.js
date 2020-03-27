@@ -98,7 +98,7 @@ function AddButton(props) {
        console.log(props.name)
         db.collection('ranks').insertOne({
             owner_id: client.auth.user.id,
-            itemCatagory: props.name,
+            itemCategory: props.name,
             itemName: props.state.itemName,
             [props.state.criteriaOne]: props.state.one,
             [props.state.criteriaTwo]: props.state.two,
@@ -174,7 +174,7 @@ class NewItem extends Component {
     
 
     state = {
-        categoryName: this.props.route.params.categoryName || this.props.route.params.catagoryTitle,
+        categoryName: this.props.route.params.categoryName || this.props.route.params.categoryTitle,
         criteriaOne: this.props.route.params.criteriaOne,
         criteriaTwo: this.props.route.params.criteriaTwo,
         criteriaThree: this.props.route.params.criteriaThree,

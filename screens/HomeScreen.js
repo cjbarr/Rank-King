@@ -133,6 +133,7 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
 
   componentDidMount() {
     this.getCategory();
+
   }
 
 
@@ -146,13 +147,12 @@ db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db
     .then(
       categories.deleteMany({ "itemCategory": catToDelete })
       )
-      // .then(
-      //   this.props.refresh()
-      // )
+      .then(
+        console.log('cat deleted')
+      )
 }
   }
   render() {
-
 console.log('refresh function', this.props.refresh)
  console.log('category prop', this.state)
 
@@ -203,6 +203,7 @@ function HomeScreen(props){
 
   const navigation = useNavigation();
   return (
+    
     <View style={styles.box}>
       <Header />
 

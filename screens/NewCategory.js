@@ -115,6 +115,18 @@ class NewCategory extends Component {
         })
     }
 
+
+    handleSecret = () => {
+        this.setState({
+            categoryName:'French Fries',
+            criteriaOne:'Taste',
+            criteriaTwo:'Crispiness',
+            criteriaThree:'Fresh Factor'
+           
+        })
+
+        console.log('secret')
+    }
     client = Stitch.defaultAppClient;
     db = this.client.getServiceClient(RemoteMongoClient.factory, 'mongodb-atlas').db('rankdb');
     
@@ -131,21 +143,21 @@ class NewCategory extends Component {
             <Header />
             <View style={styles.home}>
                 <View style={styles.display}>
-                    <Text style={styles.title}>New Category</Text>
+                    <Text onClick={()=>{this.handleSecret()}} style={styles.title}>New Category</Text>
                     <br></br>
-                    <TextInput onChange={(event) => { this.handleChange(event, 'categoryName') }} placeholder={'New Category Name'}
+                    <TextInput value={this.state.categoryName} onChange={(event) => { this.handleChange(event, 'categoryName') }} placeholder={'New Category Name'}
                         style={styles.nameInput}
                     />
                     <br></br>
-                    <TextInput onChange={(event) => { this.handleChange(event, 'criteriaOne') }} placeholder={' New Criteria 1'}
+                    <TextInput value={this.state.criteriaOne} onChange={(event) => { this.handleChange(event, 'criteriaOne') }} placeholder={' New Criteria 1'}
                         style={styles.criteriaInput}
                     />
                     <br></br>
-                    <TextInput onChange={(event) => { this.handleChange(event, 'criteriaTwo') }} placeholder={' New Criteria 2'}
+                    <TextInput value={this.state.criteriaTwo} onChange={(event) => { this.handleChange(event, 'criteriaTwo') }} placeholder={' New Criteria 2'}
                         style={styles.criteriaInput}
                     />
                     <br></br>
-                    <TextInput onChange={(event) => { this.handleChange(event, 'criteriaThree') }} placeholder={' New Criteria 3'}
+                    <TextInput value={this.state.criteriaThree} onChange={(event) => { this.handleChange(event, 'criteriaThree') }} placeholder={' New Criteria 3'}
                         style={styles.criteriaInput}
                     />
                     <br></br>

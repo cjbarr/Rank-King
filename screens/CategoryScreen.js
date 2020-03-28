@@ -75,7 +75,7 @@ function DeleteButton(props) {
         let categories = props.db.collection('ranks');
         categories.deleteOne({ "_id": itemToDelete })
             .then(
-                console.log('Deleted Item'))
+             console.log('deleted'))
             }
     }
 

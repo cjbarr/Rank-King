@@ -184,9 +184,9 @@ class NewItem extends Component {
         itemName:'',
     }
 
-    handleSecret = () => {
+    handleSecret=(event)=>{
         this.setState({
-            itemName: 'Moby Dick',
+            itemName: "McDonald's",
         })
     }
 
@@ -213,9 +213,9 @@ class NewItem extends Component {
            
             <View style={styles.home}>
                 <View style={styles.display}>
-                        <Text onClick={()=>{this.handleSecret()}} style={styles.title}>{this.state.categoryName}</Text>
+                        <Text onPress={() => { this.handleSecret() }} style={styles.title}>{this.state.categoryName}</Text>
                 <br></br>
-                        <TextInput value={this.state.itemName} placeholder={'Item Name'} onChange={this.handleText}
+                        <TextInput  value={this.state.itemName} placeholder={'Item Name'} onChange={this.handleText}
                             style={styles.criteriaInput} />
 <br></br>
                         <Display handleChange={this.handleChange} criteria={this.state.criteriaOne} number={'one'} />

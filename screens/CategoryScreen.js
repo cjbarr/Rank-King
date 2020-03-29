@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
 
 function DeleteButton(props) {
     const navigation = useNavigation();
+    console.log('EDit props', props)
 
     function deleteItem(itemToDelete) {
         if(confirm('Delete Item?')===true){

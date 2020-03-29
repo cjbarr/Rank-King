@@ -65,7 +65,7 @@ return(
       <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
       <Stack.Screen name="NewCategory" component={NewCategory} />
       <Stack.Screen name ="EditItem" component={EditItem} />
-    
+    <Stack.Screen name="SplashScreen" component={SplashScreen} />
    
  
     </Stack.Navigator>

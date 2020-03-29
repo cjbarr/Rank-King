@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FlatList, Image, Alert, Platform, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -13,7 +14,7 @@ const styles = StyleSheet.create({
         
     },
     screen:{backgroundColor:'black',
-        height:812,
+        height:'100%',
         textAlignVertical: 'center',
     },
     myName:{color:'white',
@@ -26,6 +27,7 @@ fontFamily:'tahoma'}
 
 
 const SplashScreen = (props) => {
+    const navigation = useNavigation();
     return (
     
     <View style={styles.screen}>
@@ -41,9 +43,9 @@ const SplashScreen = (props) => {
             <br></br>
             <br></br>
             <br></br>
-            <Text style={styles.words}>CooL</Text>
-            <Text style={styles.words}>👑</Text>
-            <Text style={styles.words}>RankS</Text>
+            <Text style={styles.words}>Rank King</Text>
+            <Text onPress={() => { navigation.navigate('Home')}} style={styles.words}>👑</Text>
+            
             <br></br>
             <br></br>
             <br></br>

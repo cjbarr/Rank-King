@@ -121,7 +121,7 @@ function AddButton(props) {
 
 class Display extends Component {
     state = {
-        checked: 'first',
+        checked: this.props.prevScore,
     };
 
 
@@ -129,6 +129,7 @@ class Display extends Component {
 
     render() {
         const { checked } = this.state;
+        console.log('display props', this.props)
         return (
             <View>
 
@@ -184,9 +185,9 @@ class EditItem extends Component {
         criteriaOne: this.props.route.params.criteria.one,
         criteriaTwo: this.props.route.params.criteria.two,
         criteriaThree: this.props.route.params.criteria.three,
-        one: '',
-        two: '',
-        three: '',
+        one: this.props.route.params.object[this.props.route.params.criteria.one],
+        two: this.props.route.params.object[this.props.route.params.criteria.two],
+        three: this.props.route.params.object[this.props.route.params.criteria.three],
         itemName: '',
     }
 
@@ -212,9 +213,9 @@ class EditItem extends Component {
                         <Text style={styles.title}>{this.props.route.params.object.itemName}</Text>
                     
                         <br></br>
-                        <Display handleChange={this.handleChange} criteria={this.props.route.params.criteria.one} number={'one'} />
-                        <Display handleChange={this.handleChange} criteria={this.props.route.params.criteria.two} number={'two'} />
-                        <Display handleChange={this.handleChange} criteria={this.props.route.params.criteria.three} number={'three'} />
+                        <Display handleChange={this.handleChange} prevScore={this.props.route.params.object[this.props.route.params.criteria.one]} criteria={this.props.route.params.criteria.one} number={'one'} />
+                        <Display handleChange={this.handleChange} prevScore={this.props.route.params.object[this.props.route.params.criteria.two]} criteria={this.props.route.params.criteria.two} number={'two'} />
+                        <Display handleChange={this.handleChange} prevScore={this.props.route.params.object[this.props.route.params.criteria.three]} criteria={this.props.route.params.criteria.three} number={'three'} />
                         <br></br>
 
                         <AddButton name={this.props} state={this.state} />
